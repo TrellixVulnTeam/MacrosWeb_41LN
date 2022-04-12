@@ -108,8 +108,8 @@ public class LdapUserServiceImpl {
 		String base = "OU=usuarios,OU=cali,OU=Constructora_Bolivar,DC=cbolivar,DC=corp";
 
 		// LDAP connection info
-		String ldap = "10.12.126.8";
-		int port = 389;
+		String ldap = "sql.cbolivar.com";
+		int port = 7002;
 		String ldapUrl = "ldap://" + ldap + ":" + port;
 
 		// first create the service context
