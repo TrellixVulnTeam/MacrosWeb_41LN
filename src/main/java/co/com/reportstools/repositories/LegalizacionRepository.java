@@ -41,17 +41,17 @@ public class LegalizacionRepository {
 	final int JUNTAS = 101;
 	final int VIGENCIAS = 102;
 
-	final String STORE_PROCEDURE_LEGALIZACION = "sp_legalizacion";
-	final String STORE_PROCEDURE_PROMESA = "sp_promesas";
-	final String STORE_PROCEDURE_SUBSIDIO = "sp_subsidio";
-	final String STORE_PROCEDURE_SEGUIMIENTO_SUBSIDIO = "sp_segsubsidio";
-	final String STORE_PROCEDURE_ENTREGA = "sp_entregas";
-	final String STORE_PROCEDURE_DESEMBOLSO = "sp_desembolso";
-	final String STORE_PROCEDURE_RECAUDO = "sp_recaudo";
-	final String STORE_PROCEDURE_TRAZABILIDAD = "sp_trazabilidad";
-	final String STORE_PROCEDURE_ORDENES = "sp_ordenes";
-	final String STORE_PROCEDURE_RENOVACION = "sp_renovacion";
-	final String STORE_PROCEDURE_ESCRITURACION = "sp_escrituracion";
+	final String STORE_PROCEDURE_LEGALIZACION = "sp_legalizacion_new";
+	final String STORE_PROCEDURE_PROMESA = "sp_promesas_new";
+	final String STORE_PROCEDURE_SUBSIDIO = "sp_subsidio_new";
+	final String STORE_PROCEDURE_SEGUIMIENTO_SUBSIDIO = "sp_segsubsidio_new";
+	final String STORE_PROCEDURE_ENTREGA = "sp_entregas_new";
+	final String STORE_PROCEDURE_DESEMBOLSO = "sp_desembolso_new";
+	final String STORE_PROCEDURE_RECAUDO = "sp_recaudo_new";
+	final String STORE_PROCEDURE_TRAZABILIDAD = "sp_trazabilidad_new";
+	final String STORE_PROCEDURE_ORDENES = "sp_ordenes_new";
+	final String STORE_PROCEDURE_RENOVACION = "sp_renovacion_new";
+	final String STORE_PROCEDURE_ESCRITURACION = "sp_escrituracion_new";
 
 	public String getStoreProcedureInfo(String obras, int page, int size, String sortFilter, String dataFilter,
 			int reportType) {
@@ -79,14 +79,21 @@ public class LegalizacionRepository {
 		Query queryHeaders = entityManager
 				.createNativeQuery("EXEC [dbo].[" + storeProcedureName + "] @obras = '" + obras + "' , @Opt = '2'");
 		NativeQueryImpl nativeQueryHeaders = (NativeQueryImpl) queryHeaders;
-		String resultHeaders = String.valueOf(nativeQueryHeaders.getSingleResult());
-		if (resultHeaders.contains("(")) {
-			resultHeaders = this.processHeaderWithCalculations(resultHeaders);
-		} else {
-			resultHeaders = resultHeaders.replaceAll("\r", "").replaceAll("\n", "").replaceAll("\t", "");
-		}
 
-		String[] resultHeadersList = resultHeaders.split(",");
+		Object[] resultHeadersList = {};
+		try {
+			String resultHeaders = String.valueOf(nativeQueryHeaders.getSingleResult());
+			if (resultHeaders.contains("(")) {
+				resultHeaders = this.processHeaderWithCalculations(resultHeaders);
+			} else {
+				resultHeaders = resultHeaders.replaceAll("\r", "").replaceAll("\n", "").replaceAll("\t", "");
+			}
+			resultHeadersList = resultHeaders.split(",");
+
+		} catch (Exception e) {
+			resultHeadersList = nativeQueryHeaders.getResultList().toArray();
+
+		}
 
 		String callProcedureData = "EXEC [dbo].[" + storeProcedureName + "] @obras = '" + obras + "' , @PageNumber = '"
 				+ page + "',   @RowspPage = '" + size + "'";
@@ -528,17 +535,19 @@ public class LegalizacionRepository {
 
 					tempText = tempText.trim();
 					if (tempText.charAt(tempText.length() - 1) == ';') {
-						tempText = tempText.substring(0, tempText.length() - 1) + ",";
+						tempText = tempText.substring(0, tempText.length() - 1);
 					}
 
-					div[i] = tempText;
+//					div[i] = tempText;
 
 //					temp[1] = temp[1].replaceAll(",", ";");
 //					temp[1] = temp[1].trim();
 //					if (temp[1].charAt(temp[1].length() - 1) == ';') {
 //						temp[1] = temp[1].substring(0, temp[1].length() - 1);
 //					}
-//					div[i] = temp[0] + " = " + temp[1] + ",";
+//					div[i] = temp[0] + " = " + temp[i] + ",";
+
+					div[i] = temp[0] + " = " + tempText + ",";
 				}
 			}
 			newHeader += div[i];
