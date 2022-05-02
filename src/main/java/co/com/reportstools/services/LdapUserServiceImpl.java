@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,10 @@ import javax.naming.directory.SearchResult;
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ldap.core.ContextSource;
 import org.springframework.ldap.core.LdapTemplate;
@@ -27,7 +32,10 @@ import org.springframework.ldap.core.support.BaseLdapNameAware;
 import org.springframework.ldap.filter.AndFilter;
 import org.springframework.ldap.filter.EqualsFilter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import co.com.reportstools.dto.GetTokenRequest;
+import co.com.reportstools.dto.GetTokenResponse;
 import co.com.reportstools.models.User;
 import co.com.reportstools.repositories.LoginRepository;
 import co.com.reportstools.utils.JwtTokenUtil;
@@ -52,11 +60,14 @@ public class LdapUserServiceImpl {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
+	@Autowired
+	RestTemplate restTemplate;
+
 	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
 	public ResponseEntity<?> authenticate(String userDn, String credentials) {
 
-		boolean isAuthenticateLdap = this.authenticateLdap(userDn, credentials);
+		boolean isAuthenticateLdap = this.authenticateApiAuth(userDn, credentials);
 //		boolean isAuthenticateLdap = true;
 		if (isAuthenticateLdap) {
 			String token = this.authenticationDB(userDn, credentials);
@@ -80,7 +91,7 @@ public class LdapUserServiceImpl {
 			String hash = this.bytesToHex(credentials.getBytes());
 			UUID uuid = UUID.randomUUID();
 			boolean isCreated = loginRepository.createUser(uuid.toString(), userDn, hash);
-			if(isCreated) {
+			if (isCreated) {
 				loginRepository.addOrUpdateRole(uuid.toString(), "c3ad1200-51bf-46ee-a889-0b5f01cfbd35", 1);
 			}
 
@@ -93,6 +104,31 @@ public class LdapUserServiceImpl {
 		User user = this.loginRepository.getUser(username);
 		String role = this.loginRepository.getUserRole(user.getId());
 		return this.jwtTokenUtil.generateToken(user.getUserName(), user.getId(), role);
+	}
+
+	private boolean authenticateApiAuth(String userDn, String credentials) {
+
+		GetTokenRequest getTokenRequest = new GetTokenRequest();
+		getTokenRequest.setUsername(userDn);
+		getTokenRequest.setUsername(credentials);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<GetTokenRequest> entity = new HttpEntity<GetTokenRequest>(getTokenRequest, headers);
+
+		try {
+			GetTokenResponse getTokenResponse = restTemplate.exchange("https://auth-app.azurewebsites.net/api/GetToken",
+					HttpMethod.POST, entity, GetTokenResponse.class).getBody();
+
+			if (getTokenResponse.getSuccess() && getTokenResponse.getStatusCode() == 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
 	}
 
 	private boolean authenticateLdap(String userDn, String credentials) {
