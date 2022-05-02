@@ -23,8 +23,8 @@ public class LoginRepository {
 
 	public boolean existUser(String userName) {
 
-		String callProcedureDataSelected = "SELECT Id FROM [MacrosWebApp].[dbo].[tbl_users] WHERE UserName = '"
-				+ userName + "' ";
+		String callProcedureDataSelected = "SELECT Id FROM [MacrosWebApp].[dbo].[tbl_users] WHERE lower(UserName) = lower('"
+				+ userName + "') ";
 
 		Query queryDataSelected = entityManager.createNativeQuery(callProcedureDataSelected);
 		NativeQueryImpl nativeQueryDataSelected = (NativeQueryImpl) queryDataSelected;

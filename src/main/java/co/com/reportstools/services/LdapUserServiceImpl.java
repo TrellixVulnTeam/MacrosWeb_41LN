@@ -32,6 +32,8 @@ import org.springframework.ldap.core.support.BaseLdapNameAware;
 import org.springframework.ldap.filter.AndFilter;
 import org.springframework.ldap.filter.EqualsFilter;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import co.com.reportstools.dto.GetTokenRequest;
@@ -85,6 +87,10 @@ public class LdapUserServiceImpl {
 	}
 
 	private String authenticationDB(String userDn, String credentials) {
+		String[] userPart = userDn.split("@");
+		if(userPart.length > 1) {
+			userDn = userPart[0];
+		}
 		boolean userCheck = this.loginRepository.existUser(userDn);
 
 		if (!userCheck) {
@@ -108,19 +114,20 @@ public class LdapUserServiceImpl {
 
 	private boolean authenticateApiAuth(String userDn, String credentials) {
 
-		GetTokenRequest getTokenRequest = new GetTokenRequest();
-		getTokenRequest.setUsername(userDn);
-		getTokenRequest.setUsername(credentials);
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
+		map.add("username", userDn);
+		map.add("password", credentials);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<GetTokenRequest> entity = new HttpEntity<GetTokenRequest>(getTokenRequest, headers);
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
 		try {
-			GetTokenResponse getTokenResponse = restTemplate.exchange("https://auth-app.azurewebsites.net/api/GetToken",
-					HttpMethod.POST, entity, GetTokenResponse.class).getBody();
+			GetTokenResponse getTokenResponse = restTemplate.exchange(
+					"https://auth-app.azurewebsites.net/api/GetToken?code=Q6RKdogDhFw03dg3TheRdCQnKQeyw4CeIOPbHqOsaIBaAzFutpJAVA==",
+					HttpMethod.POST, request, GetTokenResponse.class).getBody();
 
-			if (getTokenResponse.getSuccess() && getTokenResponse.getStatusCode() == 0) {
+			if (getTokenResponse.getSuccess()) {
 				return true;
 			} else {
 				return false;
