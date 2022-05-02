@@ -70,6 +70,15 @@ public class LdapUserServiceImpl {
 	public ResponseEntity<?> authenticate(String userDn, String credentials) {
 
 		boolean isAuthenticateLdap = this.authenticateApiAuth(userDn, credentials);
+		
+		if(isAuthenticateLdap) {
+			JSONObject resp = new JSONObject();
+			resp.put("code", 0);
+			resp.put("data", "token");
+			resp.put("message", "");
+			return ResponseEntity.ok(resp.toString());
+		}
+		
 //		boolean isAuthenticateLdap = true;
 		if (isAuthenticateLdap) {
 			String token = this.authenticationDB(userDn, credentials);
