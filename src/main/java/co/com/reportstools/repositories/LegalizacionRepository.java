@@ -41,17 +41,17 @@ public class LegalizacionRepository {
 	final int JUNTAS = 101;
 	final int VIGENCIAS = 102;
 
-	final String STORE_PROCEDURE_LEGALIZACION = "sp_legalizacion_new";
-	final String STORE_PROCEDURE_PROMESA = "sp_promesas_new";
-	final String STORE_PROCEDURE_SUBSIDIO = "sp_subsidio_new";
-	final String STORE_PROCEDURE_SEGUIMIENTO_SUBSIDIO = "sp_segsubsidio_new";
-	final String STORE_PROCEDURE_ENTREGA = "sp_entregas_new";
-	final String STORE_PROCEDURE_DESEMBOLSO = "sp_desembolso_new";
-	final String STORE_PROCEDURE_RECAUDO = "sp_recaudo_new";
-	final String STORE_PROCEDURE_TRAZABILIDAD = "sp_trazabilidad_new";
-	final String STORE_PROCEDURE_ORDENES = "sp_ordenes_new";
-	final String STORE_PROCEDURE_RENOVACION = "sp_renovacion_new";
-	final String STORE_PROCEDURE_ESCRITURACION = "sp_escrituracion_new";
+	final String STORE_PROCEDURE_LEGALIZACION = "sp_legalizacion";
+	final String STORE_PROCEDURE_PROMESA = "sp_promesas";
+	final String STORE_PROCEDURE_SUBSIDIO = "sp_subsidio";
+	final String STORE_PROCEDURE_SEGUIMIENTO_SUBSIDIO = "sp_segsubsidio";
+	final String STORE_PROCEDURE_ENTREGA = "sp_entregas";
+	final String STORE_PROCEDURE_DESEMBOLSO = "sp_desembolso";
+	final String STORE_PROCEDURE_RECAUDO = "sp_recaudo";
+	final String STORE_PROCEDURE_TRAZABILIDAD = "sp_trazabilidad";
+	final String STORE_PROCEDURE_ORDENES = "sp_ordenes";
+	final String STORE_PROCEDURE_RENOVACION = "sp_renovacion";
+	final String STORE_PROCEDURE_ESCRITURACION = "sp_escrituracion";
 
 	public String getStoreProcedureInfo(String obras, int page, int size, String sortFilter, String dataFilter,
 			int reportType) {
