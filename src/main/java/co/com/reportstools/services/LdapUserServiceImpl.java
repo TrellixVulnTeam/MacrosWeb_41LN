@@ -70,6 +70,8 @@ public class LdapUserServiceImpl {
 	public ResponseEntity<?> authenticate(String userDn, String credentials) {
 
 		boolean isAuthenticateLdap = this.authenticateApiAuth(userDn, credentials);
+//		boolean isAuthenticateLdap = this.authenticateLdap(userDn, credentials);
+
 		
 //		boolean isAuthenticateLdap = true;
 		if (isAuthenticateLdap) {

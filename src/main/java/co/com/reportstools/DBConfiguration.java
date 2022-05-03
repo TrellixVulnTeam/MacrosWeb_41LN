@@ -19,7 +19,7 @@ public class DBConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		dataSource.setUrl("jdbc:sqlserver://db-cbol-apps-prod.database.windows.net;database=MacrosWEB;");
+		dataSource.setUrl("jdbc:sqlserver://db-cbol-apps-prod.database.windows.net;database=MacrosWEB;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 		dataSource.setUsername("macros_web_app");
 		dataSource.setPassword("DUQa3Rc#!0@v");
 		return dataSource;
