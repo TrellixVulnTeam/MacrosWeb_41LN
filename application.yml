@@ -6,7 +6,7 @@ spring:
   datasource:
     username: "macros_web_app"
     password: "DUQa3Rc#!0@v" ##Enter your root password
-    url: "jdbc:sqlserver://db-cbol-apps-prod.database.windows.net;database=MacrosWEB;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+    url: "jdbc:sqlserver://db-cbol-apps-prod.database.windows.net;database=MacrosWebApp;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
     driverClassName: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
   jpa:
     hibernate.ddl-auto: none
