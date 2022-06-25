@@ -116,6 +116,8 @@ public class LdapUserServiceImpl {
 	}
 
 	private boolean authenticateApiAuth(String userDn, String credentials) {
+		
+		userDn = userDn+"@cbolivar.com";
 
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("username", userDn);

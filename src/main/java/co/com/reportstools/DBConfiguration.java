@@ -22,7 +22,7 @@ public class DBConfiguration {
 		dataSource.setUrl("jdbc:sqlserver://db-cbol-apps-prod.database.windows.net;database=MacrosWebApp;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
 		dataSource.setUsername("macros_web_app");
 		dataSource.setPassword("DUQa3Rc#!0@v");
-		
+//		
 //		dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //		dataSource.setUrl("jdbc:sqlserver://dwh.cbolivar.com:13144;databaseName=MacrosWebApp");
 //		dataSource.setUsername("macroswebapp");
