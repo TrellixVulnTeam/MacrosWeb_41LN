@@ -665,7 +665,7 @@ public class LegalizacionRepository {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
 							+ "      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[EstadoAbogado],\n"
 							+ "        [ObservacionAbogado],[CualFueElCambio],[NoPredialNacional],[NumeroId],[IdMunicipio],[RadicaciónOrdenPagoPySPredial],[FechaEstimadaDePyS],\n"
-							+ "        [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes] ) \n" + "        VALUES (''"
+							+ "        [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes],[TipoProyectoM] ) \n" + "        VALUES (''"
 							+ this.standardizeMapValue("UNI_ID", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("Frpl", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("QuienFirmaEsfp", map) + "'',\n" + "        ''"
@@ -685,7 +685,8 @@ public class LegalizacionRepository {
 							+ this.standardizeMapValue("TipoPyS", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("MunicipioPyS", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("EstadoPyS", map) + "'',\n" + "        ''"
-							+ this.standardizeMapValue("EstadoOrdenes", map) + "'')";
+							+ this.standardizeMapValue("EstadoOrdenes", map) + "'',\n" + "        ''"
+							+ this.standardizeMapValue("TipoProyectoM", map) + "'')";
 				} else if (reportType == this.RENOVACION) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
 							+ "      ([UNI_ID],[FechaSeguimientoCoordinador],[EstadoCoordinador],[ObservacionCoordinador],[CampanasEspeciales],[CausalRenovacion],[FechaSeguimientoAnalista],[EstadoAnalista],[ObservacionAnalista],[EstadoPoderAnalista],[Asignacion],[Broker],[FechaAsignacion] ) \n"
