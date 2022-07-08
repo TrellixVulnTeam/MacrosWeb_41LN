@@ -222,7 +222,10 @@ public class LegalizacionRepository {
 			}
 		}
 
-		return resultData;
+		JSONObject resp = new JSONObject();
+		resp.put("code", 0);
+		resp.put("message", resultData);
+		return resp.toString();
 	}
 
 	@Transactional
