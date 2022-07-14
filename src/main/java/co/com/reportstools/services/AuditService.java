@@ -11,8 +11,8 @@ public class AuditService {
 	@Autowired
 	private AuditRepository auditRepository;
 
-	public String getAudit(String startTime, String endTime) {
-		return auditRepository.getAudit(startTime,endTime);
+	public String getAudit(String startTime, String endTime, String herramienta, String usuario) {
+		return auditRepository.getAudit(startTime, endTime, herramienta, usuario);
 	}
 
 }

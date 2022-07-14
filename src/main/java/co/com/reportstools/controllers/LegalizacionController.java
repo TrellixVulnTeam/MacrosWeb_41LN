@@ -200,6 +200,8 @@ public class LegalizacionController {
 		JSONObject jsonTemp = new JSONObject(peticion);
 		String startTime = !jsonTemp.isNull("startTime") ? jsonTemp.getString("startTime") : null;
 		String endTime = !jsonTemp.isNull("endTime") ? jsonTemp.getString("endTime") : null;
-		return auditService.getAudit(startTime, endTime);
+		String herramienta = !jsonTemp.isNull("herramienta") ? jsonTemp.getString("herramienta") : null;
+		String usuario = !jsonTemp.isNull("usuario") ? jsonTemp.getString("usuario") : null;
+		return auditService.getAudit(startTime, endTime, herramienta, usuario);
 	}
 }

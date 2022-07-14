@@ -18,9 +18,28 @@ public class AuditRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public String getAudit(String startTime, String endTime) {
+	public String getAudit(String startTime, String endTime, String herramienta, String usuario) {
 
-		String callProcedureDataSelected = "SELECT * FROM [MacrosWebApp].[dbo].[tbl_auditoria] WHERE (FORMAT (fecha_modificacion, 'yyyy-MM-dd') BETWEEN '"+startTime+"' AND '"+endTime+"' )  ORDER BY fecha_modificacion DESC ";
+		String callProcedureDataSelected = "";
+
+		if (herramienta != null && usuario != null) {
+			callProcedureDataSelected = "SELECT * FROM [MacrosWebApp].[dbo].[tbl_auditoria] WHERE (FORMAT (fecha_modificacion, 'yyyy-MM-dd') BETWEEN '"
+					+ startTime + "' AND '" + endTime + "'" + ") AND herramienta = '" + herramienta + "'"
+					+ " AND usuario = '" + usuario + "'  ORDER BY fecha_modificacion DESC ";
+		} else if (herramienta != null) {
+			callProcedureDataSelected = "SELECT * FROM [MacrosWebApp].[dbo].[tbl_auditoria] WHERE (FORMAT (fecha_modificacion, 'yyyy-MM-dd') BETWEEN '"
+					+ startTime + "' AND '" + endTime + "'" + ") AND herramienta = '" + herramienta + "'"
+					+ "   ORDER BY fecha_modificacion DESC ";
+		} else if (usuario != null) {
+			callProcedureDataSelected = "SELECT * FROM [MacrosWebApp].[dbo].[tbl_auditoria] WHERE (FORMAT (fecha_modificacion, 'yyyy-MM-dd') BETWEEN '"
+					+ startTime + "' AND '" + endTime + "'" + ") AND usuario = '" + usuario
+					+ "    ORDER BY fecha_modificacion DESC ";
+		} else {
+			callProcedureDataSelected = "SELECT * FROM [MacrosWebApp].[dbo].[tbl_auditoria] WHERE (FORMAT (fecha_modificacion, 'yyyy-MM-dd') BETWEEN '"
+					+ startTime + "' AND '" + endTime + "' )  ORDER BY fecha_modificacion DESC ";
+		}
+
+		System.out.println(callProcedureDataSelected);
 
 		Query queryDataSelected = entityManager.createNativeQuery(callProcedureDataSelected);
 		NativeQueryImpl nativeQueryDataSelected = (NativeQueryImpl) queryDataSelected;
