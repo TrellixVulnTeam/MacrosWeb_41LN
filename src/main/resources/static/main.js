@@ -696,7 +696,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UtilsService", function() { return UtilsService; });
 /* harmony import */ var src_assets_json_campos_moneda_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/assets/json/campos_moneda.json */ "oji5");
 var src_assets_json_campos_moneda_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! src/assets/json/campos_moneda.json */ "oji5", 1);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var src_assets_json_campos_fechas_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/assets/json/campos_fechas.json */ "x4GW");
+var src_assets_json_campos_fechas_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! src/assets/json/campos_fechas.json */ "x4GW", 1);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 class UtilsService {
@@ -705,24 +708,27 @@ class UtilsService {
         this.MONEDA = 2;
         this.FECHA = 3;
         this.PORCENTAJE = 4;
-        this.camposFecha = ["FechaSeguimientoCoordinador", "FechaSeguimientoAnalista", "FechaAsignacion", "FechaAsignacionVarado", "FechaDesvarado", "Fecha Cuota Inicial", "Fecha Progr FRE", "FechaConcre_FRE",
-            "FechaPactada_ESFP", "FechaVenta", "FechaFactura", "FechaProgObra", "FechaProg_FREN", "FechaConcre_FREN", "CTO", "PYSP", "FVPS", "PZNO", "FirmaComprador_ESFP", "ESRN", "FGestionSubsidio",
-            "F_GestionCredito", "VencimientoCredito_CRPA", "CreditoRatificado_CRAP", "VencimientoCredito", "SOLICITUD_AVALUO_SEAD", "SCC", "RECIBO DE CARTA COMPROMISO", "FirmaPCV_PRFI", "PYSCC_PZCC",
-            "EnvioOrdenEscr_ESEO", "Entrega_FEPE", "CRSA", "CRAV", "ProyEntrega", "ProyEscritura", "SCR2", "SBAC", "RECEPCION_AVALUO_READ", "PETA", "PTIT", "RPH", "IDES AS BOLSA_DESISTIMIENTO_IDES",
-            "FVPYS", "FechadeEntrega", "DESEMBOLSO_CREDITO_CRDS", "Fecha Notificacion Desembolso_CRDC", "FechaRadicacionCredito", "Envio_garantia_Banco", "FTramiteTrazabilidad", "PROGRAMACION_ENTREGA",
-            "ENTREGA_INMUEBLE_FEPE", "FECHA_ENTREGA_OBRA_FEO", "ENVIO_EP_CIERRE_COPIA_ESNC", "FECHA_SALIDA_REGISTRO_FSR", "FECHA_INGRESO_REGISTRO_ESLC", "FIRMA_REP_LEGAL_BANCO_REFB", "ESCRITURA_LIBERACION_HIPOTECA_ESLL",
-            "APROBACION_INICIAL_CREDITO_CRPA", "SubsidioAprobado_SBAP", "SubsidioAprobado2_SBA2", "SubsidioAprobadoSemilleroPropietarios_SASP", "SubsidioAprobadoConcurrente_SBAC", "SubsidioProrrogaConcurrente_SBC2",
-            "SubsidioProrrogaSemillero2_SPS2", "NotifiDesemSubsidio_SBDC", "SDE2", "NotificacionDesemSubsidio3_SDE3", "DesembolsoSubsidio_SUDE", "RadicacionCobroSubsidio_SURC", "RadicacionCobroSubsidio2_SUR2", "RadicacionCobroSubsidio3_SUR3",
-            "ENTREGA CERTIFICADOS HABITABILIDAD_ENCH", "FechaEstimadaDePyS", "FSAC", "FRAC", "FechaAcuerdoProximoPago", "Fecha Cuota Inicial1", "Negocios de riesgos IDES", "Radicacion Ahorro Programado APRP", "Radicación Cobro Cesantias RACE",
-            "VencimientoGestionPoder", "SemDiasNotificacion", "SemDiasRadicacion", "Fecha de Aprobación de Crédito CRPA", '"Fecha de Aprobación de Crédito CRPA"', "Fecha De radicacion de Crédito CRRA", '"Fecha De radicacion de Crédito CRRA"', "FechaSeguimientoBanco", "FechaUltimaNotificación",
-            "Novedad Radicada_NCRA", '"Novedad Radicada_NCRA"', "Novedad Aprobada_NCAP", '"Novedad Aprobada_NCAP"', "Novedad Rechazada_NCNG", '"Novedad Rechazada_NCNG"', "BOLSA_DESISTIMIENTO_IDES", "Credito en Reconsideración CRRC", "FechaMarcacionCRPA", "Novedad Requerida", "ENVI"
-        ];
+        this.camposFecha = [];
+        // camposFecha: any = ["FechaSeguimientoCoordinador", "FechaSeguimientoAnalista", "FechaAsignacion", "FechaAsignacionVarado", "FechaDesvarado", "Fecha Cuota Inicial", "Fecha Progr FRE", "FechaConcre_FRE",
+        //   "FechaPactada_ESFP", "FechaVenta", "FechaFactura", "FechaProgObra", "FechaProg_FREN", "FechaConcre_FREN", "CTO", "PYSP", "FVPS", "PZNO", "FirmaComprador_ESFP", "ESRN", "FGestionSubsidio",
+        //   "F_GestionCredito", "VencimientoCredito_CRPA", "CreditoRatificado_CRAP", "VencimientoCredito", "SOLICITUD_AVALUO_SEAD", "SCC", "RECIBO DE CARTA COMPROMISO", "FirmaPCV_PRFI", "PYSCC_PZCC",
+        //   "EnvioOrdenEscr_ESEO", "Entrega_FEPE", "CRSA", "CRAV", "ProyEntrega", "ProyEscritura", "SCR2", "SBAC", "RECEPCION_AVALUO_READ", "PETA", "PTIT", "RPH", "IDES AS BOLSA_DESISTIMIENTO_IDES",
+        //   "FVPYS", "FechadeEntrega", "DESEMBOLSO_CREDITO_CRDS", "Fecha Notificacion Desembolso_CRDC", "FechaRadicacionCredito", "Envio_garantia_Banco", "FTramiteTrazabilidad", "PROGRAMACION_ENTREGA",
+        //   "ENTREGA_INMUEBLE_FEPE", "FECHA_ENTREGA_OBRA_FEO", "ENVIO_EP_CIERRE_COPIA_ESNC", "FECHA_SALIDA_REGISTRO_FSR", "FECHA_INGRESO_REGISTRO_ESLC", "FIRMA_REP_LEGAL_BANCO_REFB", "ESCRITURA_LIBERACION_HIPOTECA_ESLL",
+        //   "APROBACION_INICIAL_CREDITO_CRPA", "SubsidioAprobado_SBAP", "SubsidioAprobado2_SBA2", "SubsidioAprobadoSemilleroPropietarios_SASP", "SubsidioAprobadoConcurrente_SBAC", "SubsidioProrrogaConcurrente_SBC2",
+        //   "SubsidioProrrogaSemillero2_SPS2", "NotifiDesemSubsidio_SBDC", "SDE2", "NotificacionDesemSubsidio3_SDE3", "DesembolsoSubsidio_SUDE", "RadicacionCobroSubsidio_SURC", "RadicacionCobroSubsidio2_SUR2", "RadicacionCobroSubsidio3_SUR3",
+        //   "ENTREGA CERTIFICADOS HABITABILIDAD_ENCH", "FechaEstimadaDePyS", "FSAC", "FRAC", "FechaAcuerdoProximoPago", "Fecha Cuota Inicial1", "Negocios de riesgos IDES", "Radicacion Ahorro Programado APRP", "Radicación Cobro Cesantias RACE",
+        //   "VencimientoGestionPoder", "SemDiasNotificacion", "SemDiasRadicacion", "Fecha de Aprobación de Crédito CRPA", '"Fecha de Aprobación de Crédito CRPA"', "Fecha De radicacion de Crédito CRRA", '"Fecha De radicacion de Crédito CRRA"', "FechaSeguimientoBanco", "FechaUltimaNotificación",
+        //   "Novedad Radicada_NCRA", '"Novedad Radicada_NCRA"', "Novedad Aprobada_NCAP", '"Novedad Aprobada_NCAP"', "Novedad Rechazada_NCNG", '"Novedad Rechazada_NCNG"', "BOLSA_DESISTIMIENTO_IDES", "Credito en Reconsideración CRRC", "FechaMarcacionCRPA", "Novedad Requerida","ENVI"
+        // ];
         // campoMoneda: String[] = ['Neto', 'SaldoCI', 'ValorCredito', 'ValorPagadoCredito', 'Valor Subsidio 1', 'Valor Subsidio 2', 'Valor Subsidio Concurrente', 'Valor Pagado Subsidio', 'MontoPactado', 'SinVencer', 'Mora 1-30 dias', 'Mora 31-45 dias', 'Mora 46-60 dias', 'Mora 61-90 dias', 'Mora 91-120 dias', 'Mora 120 + dias', 'Vencido', 'Proyeccion_Mes', 'Valor_Gestionar', 'EjecutadoMes'];
         this.campoMoneda = [];
         this.campoPorcentaje = ['Cumplimiento_Meta', 'prob_desist'];
         this.campoMoneda = src_assets_json_campos_moneda_json__WEBPACK_IMPORTED_MODULE_0___namespace;
         this.campoMoneda = this.campoMoneda.default;
         console.log('this.campoMoneda', this.campoMoneda);
+        this.camposFecha = src_assets_json_campos_fechas_json__WEBPACK_IMPORTED_MODULE_1___namespace;
+        this.camposFecha = this.camposFecha.default;
     }
     getAliasFromColumnCalculate(txt) {
         if (txt.includes('.') && !txt.includes('=')) {
@@ -803,7 +809,7 @@ class UtilsService {
     }
 }
 UtilsService.ɵfac = function UtilsService_Factory(t) { return new (t || UtilsService)(); };
-UtilsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: UtilsService, factory: UtilsService.ɵfac });
+UtilsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: UtilsService, factory: UtilsService.ɵfac });
 
 
 /***/ }),
@@ -6287,6 +6293,17 @@ AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineN
 AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
 
+
+/***/ }),
+
+/***/ "x4GW":
+/*!********************************************!*\
+  !*** ./src/assets/json/campos_fechas.json ***!
+  \********************************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("[\"FechaSeguimientoCoordinador\",\"FechaSeguimientoAnalista\",\"FechaAsignacion\",\"FechaAsignacionVarado\",\"FechaDesvarado\",\"Fecha Cuota Inicial\",\"Fecha Progr FRE\",\"FechaConcre_FRE\",\"FechaPactada_ESFP\",\"FechaVenta\",\"FechaFactura\",\"FechaProgObra\",\"FechaProg_FREN\",\"FechaConcre_FREN\",\"CTO\",\"PYSP\",\"FVPS\",\"PZNO\",\"FirmaComprador_ESFP\",\"ESRN\",\"FGestionSubsidio\",\"F_GestionCredito\",\"VencimientoCredito_CRPA\",\"CreditoRatificado_CRAP\",\"VencimientoCredito\",\"SOLICITUD_AVALUO_SEAD\",\"SCC\",\"RECIBO DE CARTA COMPROMISO\",\"FirmaPCV_PRFI\",\"PYSCC_PZCC\",\"EnvioOrdenEscr_ESEO\",\"Entrega_FEPE\",\"CRSA\",\"CRAV\",\"ProyEntrega\",\"ProyEscritura\",\"SCR2\",\"SBAC\",\"RECEPCION_AVALUO_READ\",\"PETA\",\"PTIT\",\"RPH\",\"IDES AS BOLSA_DESISTIMIENTO_IDES\",\"FVPYS\",\"FechadeEntrega\",\"DESEMBOLSO_CREDITO_CRDS\",\"Fecha Notificacion Desembolso_CRDC\",\"FechaRadicacionCredito\",\"Envio_garantia_Banco\",\"FTramiteTrazabilidad\",\"PROGRAMACION_ENTREGA\",\"ENTREGA_INMUEBLE_FEPE\",\"FECHA_ENTREGA_OBRA_FEO\",\"ENVIO_EP_CIERRE_COPIA_ESNC\",\"FECHA_SALIDA_REGISTRO_FSR\",\"FECHA_INGRESO_REGISTRO_ESLC\",\"FIRMA_REP_LEGAL_BANCO_REFB\",\"ESCRITURA_LIBERACION_HIPOTECA_ESLL\",\"APROBACION_INICIAL_CREDITO_CRPA\",\"SubsidioAprobado_SBAP\",\"SubsidioAprobado2_SBA2\",\"SubsidioAprobadoSemilleroPropietarios_SASP\",\"SubsidioAprobadoConcurrente_SBAC\",\"SubsidioProrrogaConcurrente_SBC2\",\"SubsidioProrrogaSemillero2_SPS2\",\"NotifiDesemSubsidio_SBDC\",\"SDE2\",\"NotificacionDesemSubsidio3_SDE3\",\"DesembolsoSubsidio_SUDE\",\"RadicacionCobroSubsidio_SURC\",\"RadicacionCobroSubsidio2_SUR2\",\"RadicacionCobroSubsidio3_SUR3\",\"ENTREGA CERTIFICADOS HABITABILIDAD_ENCH\",\"FechaEstimadaDePyS\",\"FSAC\",\"FRAC\",\"FechaAcuerdoProximoPago\",\"Fecha Cuota Inicial1\",\"Negocios de riesgos IDES\",\"Radicacion Ahorro Programado APRP\",\"Radicación Cobro Cesantias RACE\",\"Fecha De radicacion de Crédito CRRA\",\"ENVI\",\"ELC2\",\"RCTC\",\"CTC\"]");
 
 /***/ }),
 
