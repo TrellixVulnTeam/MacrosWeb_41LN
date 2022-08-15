@@ -1,0 +1,29 @@
+.content-panel {
+  padding: 2em;
+  height: 100%;
+
+  mat-card {
+    height: auto;
+    margin-bottom: 6em;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+@media (max-width: 506px) {
+  .mat-elevation-z8 {
+    overflow-x: auto;
+  }
+}

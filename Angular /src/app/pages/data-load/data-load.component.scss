@@ -1,0 +1,33 @@
+.content-panel {
+  padding: 2em;
+  height: 100%;
+
+  mat-card {
+    height: 100%;
+    margin-bottom: 6em;
+
+    .inputSelectForm {
+      width: 50%;
+    }
+
+    .download-template {
+      background-color: #fee350;
+      color: #048c44;
+      margin-left: 1em;
+    }
+
+    .download-template.mat-raised-button.mat-button-disabled,
+    .load-data.mat-raised-button.mat-button-disabled,
+    .send-data.mat-raised-button.mat-button-disabled {
+      background-color: rgba(0, 0, 0, .12) !important;
+      color: black !important;
+    }
+
+    .send-data {
+      background-color: #048c44;
+      color: white;
+      margin-top: 1em;
+    }
+  }
+
+}

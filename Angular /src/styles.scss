@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+#spinner-panel {
+
+  .p-dialog .p-dialog-content,
+  .spinner-wrapper,
+  .p-dialog {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  z-index: 1 !important;
+}
+
+::ng-deep .cdk-global-overlay-wrapper {
+  z-index: 1 !important;
+}
+
+.p-fileupload-choose {
+  background-color: #fee350 !important;
+  color: #048c44 !important;
+  border: none !important;
+}

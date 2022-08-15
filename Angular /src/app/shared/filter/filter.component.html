@@ -1,0 +1,40 @@
+<mat-card [id]="headers" class="simple-filter">
+    <div class="panel-close-modal" (click)="close(headers)">
+        <mat-icon>close</mat-icon>
+    </div>
+
+    <div mat-menu-item mat-filter-item [disableRipple]="true" class="menu-title">
+        {{customHeaders}}
+    </div>
+    <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <mat-form-field>
+            <mat-select #matSelect [panelClass]="'mat-elevation-z10'" placeholder='Conditions'
+                [(value)]="searchCondition[headers]" (selectionChange)="select($event)" multiple>
+                <div class="search-filter-panel">
+                    <mat-checkbox [formControl]="checkedAll"></mat-checkbox>
+                    <input class="SearchBox" matInput [formControl]="searchText" placeholder="Buscar"
+                        (keydown)="$event.stopPropagation()">
+                    <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon" (click)="clear()">
+                        close</mat-icon>
+                </div>
+                <mat-option *ngFor="let  condition of filtersOptions[headers]" [value]="condition">
+                    <!-- <span>{{condition}}</span> -->
+                    <span *ngIf="condition == 'Vacio' || !camposFecha.includes(headers)">{{condition}}</span>
+                    <span *ngIf="camposFecha.includes(headers) && condition != 'Vacio'">{{condition |
+                        date:'dd-MM-yyyy'}}</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <mat-form-field>
+            <input matInput placeholder="Value" [(ngModel)]="searchValue.position">
+        </mat-form-field>
+    </div> -->
+
+    <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <button mat-raised-button (click)="clearFilter(headers)">Limpiar</button>
+        <button mat-raised-button color="primary" (click)="applyFilter(headers)">Aplicar</button>
+    </div>
+</mat-card>

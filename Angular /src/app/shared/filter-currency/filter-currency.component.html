@@ -1,0 +1,63 @@
+<mat-card [id]="headers" class="date-panel-filter">
+    <div class="panel-close-modal" (click)="close(headers)">
+        <mat-icon>close</mat-icon>
+    </div>
+    <div mat-menu-item mat-filter-item [disableRipple]="true" class="menu-title">
+        {{customHeaders}}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="applyFilter(headers)" mat-menu-item mat-filter-item [disableRipple]="true">
+        <mat-form-field>
+            <mat-select #matSelect [panelClass]="'mat-elevation-z10'" placeholder='Conditions' [(value)]="searchType">
+                <mat-option value="1">
+                    <span>Es</span>
+                </mat-option>
+                <mat-option value="2">
+                    <span>No es</span>
+                </mat-option>
+                <mat-option value="3">
+                    <span>Es Menor</span>
+                </mat-option>
+                <mat-option value="4">
+                    <span>Es Mayor</span>
+                </mat-option>
+                <mat-option value="5">
+                    <span>Entre</span>
+                </mat-option>
+                <mat-option value="6">
+                    <span>Es Vacio</span>
+                </mat-option>
+                <mat-option value="7">
+                    <span>No Es Vacio</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always" *ngIf="searchType != 6 && searchType != 7">
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0"
+                formControlName="valueSearchField">
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always" *ngIf="searchType == 5">
+            <mat-label>Hasta</mat-label>
+            <input matInput type="number" class="example-right-align" placeholder="0"
+                formControlName="valueSearchField2">
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix>.00</span>
+        </mat-form-field>
+
+    </form>
+
+    <!-- <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <mat-form-field>
+            <input matInput placeholder="Value" [(ngModel)]="searchValue.position">
+        </mat-form-field>
+    </div> -->
+
+    <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <button type="button" mat-raised-button (click)="clearFilter(headers)">Limpiar</button>
+        <button mat-raised-button color="primary" (click)="applyFilter(headers)">Aplicar</button>
+    </div>
+</mat-card>

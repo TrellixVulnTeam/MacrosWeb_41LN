@@ -1,0 +1,15 @@
+<app-layout>
+    <section class="content-panel">
+        <div>
+            <h1>Bienvenido a MacrosWeb</h1>
+            <strong> Aquí podrá interactuar con las herramientas de Tramite y Cartera.
+            </strong>
+            <p> <strong>Antes de iniciar pida a el administrador asignar su perfil</strong></p>
+        </div>
+        <mat-card>
+            <iframe *ngIf="resource" [src]="resource | safe">
+
+            </iframe>
+        </mat-card>
+    </section>
+</app-layout>

@@ -1,0 +1,28 @@
+.content-panel {
+  padding: 2em;
+  height: 100%;
+
+  mat-card {
+    height: auto;
+    margin-bottom: 6em;
+  }
+
+  .save-content {
+    position: fixed;
+    z-index: 99;
+    bottom: 2em;
+    right: 2em;
+
+    button {
+      background-color: #fee350;
+
+      mat-icon {
+        color: #048c44;
+      }
+    }
+  }
+
+  .input-filter{
+    width: 100%;
+  }
+}

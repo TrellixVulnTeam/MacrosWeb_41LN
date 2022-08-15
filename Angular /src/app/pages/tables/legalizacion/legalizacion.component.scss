@@ -1,0 +1,150 @@
+.content-panel {
+  padding: 2em;
+  height: 100%;
+
+  mat-card {
+    height: auto;
+    // height: 100%;
+  }
+
+  .title-content {
+    display: flex;
+
+    mat-form-field {
+      min-width: 20em;
+    }
+  }
+
+  .content-table {
+    overflow-x: scroll;
+    min-height: 22em;
+    height: auto;
+    // max-height: 40em;
+    // height: 50vh;
+
+    tr.mat-row:hover,
+    tr.mat-row:active {
+      background-color: whitesmoke;
+    }
+  }
+
+  .content-btns {
+    padding-bottom: 1em;
+
+    .btn-clean {
+      background-color: #fee350;
+      color: #048c44;
+    }
+  }
+
+  .download-content {
+    display: inline-block;
+    position: fixed;
+    bottom: 3em;
+    right: 2em;
+
+    button {
+      background-color: #fee350;
+
+      mat-icon {
+        color: #048c44;
+      }
+    }
+  }
+}
+
+table {
+  width: 100%;
+
+  .th-header {
+    display: flex;
+
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+
+  .td-content {
+    display: inline-block;
+    height: 2em;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    min-width: 10em;
+    max-width: 40em;
+  }
+
+  .header-filter {
+    display: none;
+    position: absolute;
+    right: -10em;
+    top: 4.9em;
+  }
+
+  th {
+    position: relative !important;
+  }
+
+  th,
+  td {
+    padding: 0 2em;
+    border: 1px solid #e0e0e0;
+  }
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.rowSelect {
+  background-color: lightgray !important;
+}
+
+
+.negativeColorRules {
+  background-color: #c62828;
+}
+
+.ok1ColorRules {
+  background-color: #43a047;
+}
+
+.ok2ColorRules {
+  background-color: #fdd835;
+}
+
+.expirationColorRules {
+  background-color: #ffa000;
+}
+
+.filterActive {
+  background-color: #048c44;
+  border-radius: 50%;
+}
+
+::ng-deep .content-panel table thead {
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+// ::ng-deep table tbody {
+//   background-color: red !important;
+// }
+
+
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+@media (max-width: 506px) {
+  .title-content{
+    flex-direction: column;
+    mat-form-field{
+      min-width: auto !important;
+    }
+  }
+}

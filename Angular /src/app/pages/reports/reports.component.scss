@@ -1,0 +1,14 @@
+.content-panel {
+  padding: 2em;
+  height: 100%;
+
+  mat-card {
+    height: 100%;
+
+    iframe {
+      height: 100%;
+      width: 100%;
+      border: none;
+    }
+  }
+}

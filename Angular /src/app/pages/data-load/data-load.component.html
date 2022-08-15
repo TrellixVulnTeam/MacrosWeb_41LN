@@ -1,0 +1,40 @@
+<app-layout>
+    <section class="content-panel">
+        <mat-card>
+            <h1>Cargar Informacion</h1>
+            <div>
+                <form [formGroup]="form">
+                    <div>
+                        <mat-form-field class="inputSelectForm" appearance="fill">
+                            <mat-label>Herramienta</mat-label>
+                            <mat-select formControlName="tool">
+                                <mat-option [value]="option.id" *ngFor="let option of toolList">{{option.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-raised-button type="button" class="download-template" color="primary"
+                            (click)="downloadTemplate()" [disabled]="currentTool == null">Descargar Plantilla</button>
+                    </div>
+                    <p-fileUpload #UploadFileInput name="myfile" styleClass="load-data" chooseLabel="Adjuntar Formato"
+                        customUpload="true" (uploadHandler)="myUploader($event)" [auto]="true" mode="basic"
+                        [disabled]="currentTool == null"
+                        accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                    </p-fileUpload>
+                    <button mat-raised-button type="button" class="send-data" color="primary"
+                        [disabled]="currentTool == null || listaCamposError.length > 0" (click)="sendData()">Enviar
+                        Informacion</button>
+                </form>
+            </div>
+            <div *ngIf="listaCamposError.length > 0">
+                <h4>Se ha presentado un error al procesar el archivo, por favor ingrese valores validos en los
+                    siguientes campos:</h4>
+                <div *ngFor="let error of listaCamposError">
+                    <span>UNI_ID: {{error.UNI_ID}} - campo: {{error.campo}} - <span style="color: red;">valor</span>:
+                        <span style="color: red;">{{error.valor}}</span> </span>
+                </div>
+            </div>
+        </mat-card>
+        <p-confirmDialog header="Confirmacion" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    </section>
+</app-layout>

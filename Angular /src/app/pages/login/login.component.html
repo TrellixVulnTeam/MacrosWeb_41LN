@@ -1,0 +1,39 @@
+<section class="main-container">
+    <div class="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="./assets/img/login.png" alt="">
+                <!-- <div class="text">
+                    <span class="text-1">Every new friend is a <br> new adventure</span>
+                    <span class="text-2">Let's get connected</span>
+                </div> -->
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Iniciar Sesion</div>
+                    <form [formGroup]="form" (ngSubmit)="login()">
+                        <div class="input-boxes">
+                            <span class="errorText">{{errorText}}</span>
+                            <mat-form-field appearance="fill" class="loginInput">
+                                <mat-label>Usuario</mat-label>
+                                <input matInput type="text" placeholder="Usuario" formControlName="user" required>
+                                <mat-error *ngIf="form.get('user').hasError('required')">Por favor ingrese un nombre de usuario</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="loginInput">
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput type="password" placeholder="Contraseña" formControlName="password" required>
+                                <mat-error *ngIf="form.get('password').hasError('required')">Por favor ingrese su contraseña</mat-error>
+                            </mat-form-field>
+                            <div class="button input-box">
+                                <button type="submit" mat-raised-button [disabled]="!form.valid">Entrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

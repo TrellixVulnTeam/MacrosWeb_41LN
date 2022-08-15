@@ -1,0 +1,73 @@
+.panel-form-modal-content {
+  h1 {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+
+.form-panel-input {
+  margin-bottom: 1.5em;
+
+  .input-time-panel {
+    display: inline-block;
+    width: 34em;
+    vertical-align: top;
+    margin-left: 0;
+
+    p-calendar {
+      width: 100%;
+
+      span {
+        width: 100%;
+      }
+    }
+  }
+
+  .inputForm {
+    display: inline-block;
+    width: 34em;
+    vertical-align: top;
+  }
+
+
+  >div {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 1em;
+
+    button {
+      display: block;
+    }
+  }
+
+
+}
+
+.search-filter-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 16px;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  background-color: white;
+  z-index: 2;
+
+  input {
+    margin: 0 1em;
+    height: 1.5em;
+  }
+
+  mat-checkbox {
+    .mat-checkbox-background {
+      background-color: #3f51b5;
+    }
+  }
+
+  .close-icon {
+    cursor: pointer;
+  }
+}

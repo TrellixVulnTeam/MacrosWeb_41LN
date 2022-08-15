@@ -1,0 +1,60 @@
+<mat-card [id]="headers" class="date-panel-filter">
+    <div class="panel-close-modal" (click)="close(headers)">
+        <mat-icon>close</mat-icon>
+    </div>
+    <div mat-menu-item mat-filter-item [disableRipple]="true" class="menu-title">
+        {{customHeaders}}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="applyFilter(headers)" mat-menu-item mat-filter-item [disableRipple]="true">
+        <mat-form-field>
+            <mat-select #matSelect [panelClass]="'mat-elevation-z10'" placeholder='Conditions' [(value)]="searchType">
+                <mat-option value="1">
+                    <span>Es</span>
+                </mat-option>
+                <mat-option value="2">
+                    <span>No es</span>
+                </mat-option>
+                <mat-option value="3">
+                    <span>Es Antes</span>
+                </mat-option>
+                <mat-option value="4">
+                    <span>Es Despues</span>
+                </mat-option>
+                <mat-option value="5">
+                    <span>Entre</span>
+                </mat-option>
+                <mat-option value="6">
+                    <span>Es Vacio</span>
+                </mat-option>
+                <mat-option value="7">
+                    <span>No Es Vacio</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="searchType != 6 && searchType != 7">
+            <mat-label>Escoje una fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateSearchField">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="searchType == 5">
+            <mat-label>Hasta</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="dateSearchField2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+    </form>
+
+    <!-- <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <mat-form-field>
+            <input matInput placeholder="Value" [(ngModel)]="searchValue.position">
+        </mat-form-field>
+    </div> -->
+
+    <div mat-menu-item mat-filter-item [disableRipple]="true">
+        <button type="button" mat-raised-button (click)="clearFilter(headers)">Limpiar</button>
+        <button mat-raised-button color="primary" (click)="applyFilter(headers)">Aplicar</button>
+    </div>
+</mat-card>

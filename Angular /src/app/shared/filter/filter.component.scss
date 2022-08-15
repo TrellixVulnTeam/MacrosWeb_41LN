@@ -1,0 +1,43 @@
+.simple-filter {
+  box-shadow: 0 2px 4px -1px #0003, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
+
+  .panel-close-modal {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.SearchBox {
+  border: 1px solid #ccc;
+  padding: 1em;
+  border-radius: 0.3em;
+}
+
+.search-filter-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 16px;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  background-color: white;
+  z-index: 2;
+
+  input {
+    margin: 0 1em;
+    height: 0.5em;
+  }
+
+  mat-checkbox {
+    .mat-checkbox-background {
+      background-color: #3f51b5;
+    }
+  }
+
+  .close-icon {
+    cursor: pointer;
+  }
+}

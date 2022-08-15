@@ -1,0 +1,1132 @@
+<div class="panel-form-modal-content">
+    <h1>{{currentElement.Proyecto}} - {{currentElement.Agrupacion}} - {{currentElement.NIT}} <br />
+        {{currentElement.Nombre}}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="closeModal()">
+        <div class="form-panel-input" *ngIf="reportType == 5">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechadeEntrega (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechadeEntrega" formControlName="FechadeEntrega">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechadeEntrega"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechadeEntrega></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechadeEntrega">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechadeEntrega',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 5">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>HoradeEntrega</mat-label>
+                <mat-select formControlName="HoradeEntrega">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextHoradeEntrega" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('HoradeEntrega')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of horaEntregaList | filter : searchTextHoradeEntrega">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.HoradeEntrega">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('HoradeEntrega')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 5">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Disponibilidad</mat-label>
+                <input matInput readonly>
+            </mat-form-field>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Frpl</mat-label>
+                <mat-select formControlName="Frpl">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextFrp" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('Frpl')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option" *ngFor="let option of frplList | filter : searchTextFrp">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Frpl">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Frpl')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>QuienFirmaEsfp</mat-label>
+                <mat-select formControlName="QuienFirmaEsfp">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextQuienFirmaEsfp" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('QuienFirmaEsfp')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of quienFirmaEsfpList | filter : searchTextQuienFirmaEsfp">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.QuienFirmaEsfp">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('QuienFirmaEsfp')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoEsfpFrpl</mat-label>
+                <mat-select formControlName="EstadoEsfpFrpl">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoEsfpFrpl" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoEsfpFrpl')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of estadoEsfpFrplList | filter : searchTextEstadoEsfpFrpl">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoEsfpFrpl">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoEsfpFrpl')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input"
+            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 9 || reportType == 10 || reportType == 11">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoCoordinador</mat-label>
+                <mat-select formControlName="EstadoCoordinador">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoCoordinador" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoCoordinador')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of estadoCoordinadorList | filter : searchTextEstadoCoordinador">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoCoordinador">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoCoordinador')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input"
+            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 9 || reportType == 10 || reportType == 11">
+            <mat-form-field class="inputForm" appearance="fill" hintLabel="Max 8000 caracteres">
+                <mat-label>ObservacionCoordinador</mat-label>
+                <textarea matInput formControlName="ObservacionCoordinador" maxlength="8000"
+                    #ObservacionCoordinador></textarea>
+                <mat-hint align="end">{{ObservacionCoordinador.value?.length || 0}}/8000</mat-hint>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.ObservacionCoordinador">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('ObservacionCoordinador')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>CampanasEspeciales</mat-label>
+                <mat-select formControlName="CampanasEspeciales">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextCampanasEspeciales"
+                            placeholder="Buscar" [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('CampanasEspeciales')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of campanasEspecialesList | filter : searchTextCampanasEspeciales">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.CampanasEspeciales">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('CampanasEspeciales')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>CausalRenovacion</mat-label>
+                <mat-select formControlName="CausalRenovacion">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextCausalRenovacion" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('CausalRenovacion')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of causalRenovacionList | filter : searchTextCausalRenovacion">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.CausalRenovacion">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('CausalRenovacion')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 3 || reportType == 6">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Comentarios</mat-label>
+                <textarea matInput formControlName="Comentarios"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Comentarios">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Comentarios')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input"
+            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 9 || reportType == 10 || reportType == 11">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label *ngIf="ORDENES != reportType">EstadoAnalista</mat-label>
+                <mat-label *ngIf="ORDENES == reportType">EstadoAuxiliar</mat-label>
+
+                <mat-select formControlName="EstadoAnalista">
+                    <div class="search-filter-panel">
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoAnalista" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoAnalista')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of estadoAnalistaList | filter : searchTextEstadoAnalista">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoAnalista">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoAnalista')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input"
+            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 9 || reportType == 10 || reportType == 11">
+            <mat-form-field class="inputForm" appearance="fill" hintLabel="Max 8000 caracteres">
+                <mat-label *ngIf="ORDENES != reportType">ObservacionAnalista</mat-label>
+                <mat-label *ngIf="ORDENES == reportType">ObservacionAuxiliar</mat-label>
+                <textarea matInput formControlName="ObservacionAnalista" maxlength="8000"
+                    #ObservacionAnalista></textarea>
+                <mat-hint align="end">{{ObservacionAnalista.value?.length || 0}}/8000</mat-hint>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.ObservacionAnalista">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('ObservacionAnalista')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>AsignacionAnalista</mat-label>
+                <mat-select formControlName="AsignacionAnalista">
+                    <div class="search-filter-panel">
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextAsignacionAnalista"
+                            placeholder="Buscar" [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('AsignacionAnalista')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of asignacionAnalistaList | filter : searchTextAsignacionAnalista">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.AsignacionAnalista">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('AsignacionAnalista')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>AnalistaVarado</mat-label>
+                <textarea matInput formControlName="AnalistaVarado"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.AnalistaVarado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('AnalistaVarado')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1 || reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaSeguimientoCoordinador (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaSeguimientoCoordinador"
+                    formControlName="FechaSeguimientoCoordinador">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaSeguimientoCoordinador"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaSeguimientoCoordinador></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaSeguimientoCoordinador">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaSeguimientoCoordinador',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1 || reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaSeguimientoAnalista (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaSeguimientoAnalista"
+                    formControlName="FechaSeguimientoAnalista">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaSeguimientoAnalista"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaSeguimientoAnalista></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaSeguimientoAnalista">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaSeguimientoAnalista',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaAsignacionVarado (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaAsignacionVarado" formControlName="FechaAsignacionVarado">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaAsignacionVarado"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaAsignacionVarado></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaAsignacionVarado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaAsignacionVarado',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaDesvarado (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaDesvarado" formControlName="FechaDesvarado">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaDesvarado"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaDesvarado></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaDesvarado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaDesvarado',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-panel-input" *ngIf="reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoPoderAnalista</mat-label>
+                <mat-select formControlName="EstadoPoderAnalista">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoPoderAnalista"
+                            placeholder="Buscar" [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoPoderAnalista')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of estadoPoderAnalistaList | filter : searchTextEstadoPoderAnalista">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoPoderAnalista">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoPoderAnalista')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Asignacion</mat-label>
+                <mat-select formControlName="Asignacion">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextAsignacion" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('Asignacion')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option" *ngFor="let option of asignacionList | filter : searchTextAsignacion">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Asignacion">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Asignacion')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Broker</mat-label>
+                <mat-select formControlName="Broker">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextBroker" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('Broker')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option" *ngFor="let option of brokerList | filter : searchTextBroker">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Broker">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Broker')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-panel-input" *ngIf="reportType == 1 || reportType == 10">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaAsignacion (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaAsignacion" formControlName="FechaAsignacion">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaAsignacion"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaAsignacion></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaAsignacion">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaAsignacion',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 5">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Arquitecta</mat-label>
+                <textarea matInput formControlName="Arquitecta"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Arquitecta">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Arquitecta')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 5">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>CreacionCaso</mat-label>
+                <mat-select formControlName="CreacionCaso">
+                    <div class="search-filter-panel">
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextcreacionCaso" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('CreacionCaso')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of creacionCasoList | filter : searchTextcreacionCaso">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.CreacionCaso">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('CreacionCaso')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 5">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Apoderado</mat-label>
+                <textarea matInput formControlName="Apoderado"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Apoderado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Apoderado')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaAcuerdoProximoPago (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaAcuerdoProximoPago"
+                    formControlName="FechaAcuerdoProximoPago">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaAcuerdoProximoPago"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaAcuerdoProximoPago></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaAcuerdoProximoPago">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaAcuerdoProximoPago',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input " *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>MontoPactado</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"
+                    formControlName="MontoPactado">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.MontoPactado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('MontoPactado')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>LlamadaNo1</mat-label>
+                <textarea matInput formControlName="LlamadaNo1"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.LlamadaNo1">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('LlamadaNo1')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>LlamadaNo2</mat-label>
+                <textarea matInput formControlName="LlamadaNo2"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.LlamadaNo2">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('LlamadaNo2')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Carta1 (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerCarta1"
+                    formControlName="Carta1">
+                <mat-datepicker-toggle matSuffix [for]="pickerCarta1"></mat-datepicker-toggle>
+                <mat-datepicker #pickerCarta1></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Carta1">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Carta1',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Carta2 (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerCarta2"
+                    formControlName="Carta2">
+                <mat-datepicker-toggle matSuffix [for]="pickerCarta2"></mat-datepicker-toggle>
+                <mat-datepicker #pickerCarta2></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Carta2">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Carta2',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>Carta3 (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerCarta3"
+                    formControlName="Carta3">
+                <mat-datepicker-toggle matSuffix [for]="pickerCarta3"></mat-datepicker-toggle>
+                <mat-datepicker #pickerCarta3></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.Carta3">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('Carta3',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 7">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoEscriturado</mat-label>
+                <mat-select formControlName="EstadoEscriturado">
+                    <div class="search-filter-panel">
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoEscriturado" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoEscriturado')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of estadoEscrituradoList | filter : searchTextEstadoEscriturado">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoEscriturado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoEscriturado')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-panel-input" *ngIf="reportType == 8">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>TipificacionCorreccionesCtl</mat-label>
+                <mat-select formControlName="TipificacionCorreccionesCtl">
+                    <div class="search-filter-panel">
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextTipificacionCorreccionesCtl"
+                            placeholder="Buscar" [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('TipificacionCorreccionesCtl')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of tipificacionCorreccionesCtlList | filter : searchTextTipificacionCorreccionesCtl">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.TipificacionCorreccionesCtl">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('TipificacionCorreccionesCtl')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 8">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>NBR</mat-label>
+                <textarea matInput formControlName="NBR"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.NBR">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('NBR')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 8">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>AnalistaTrazabilidad</mat-label>
+                <textarea matInput formControlName="AnalistaTrazabilidad"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.AnalistaTrazabilidad">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('AnalistaTrazabilidad')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 8">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>DetalleObservacion</mat-label>
+                <textarea matInput formControlName="DetalleObservacion"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.DetalleObservacion">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('DetalleObservacion')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoAbogado</mat-label>
+                <mat-select formControlName="EstadoAbogado">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoAbogado" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoAbogado')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of estadoAbogadoList | filter : searchTextEstadoAbogado">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoAbogado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoAbogado')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>ObservacionAbogado</mat-label>
+                <textarea matInput formControlName="ObservacionAbogado"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.ObservacionAbogado">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('ObservacionAbogado')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>PresentoCambio</mat-label>
+                <mat-select formControlName="PresentoCambio">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextPresentoCambio" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('PresentoCambio')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of presentoCambioList | filter : searchTextPresentoCambio">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.PresentoCambio">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('PresentoCambio')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>CualFueElCambio</mat-label>
+                <textarea matInput formControlName="CualFueElCambio"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.CualFueElCambio">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('CualFueElCambio')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>NoPredialNacional</mat-label>
+                <textarea matInput formControlName="NoPredialNacional"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.NoPredialNacional">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('NoPredialNacional')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>NumeroId</mat-label>
+                <textarea matInput formControlName="NumeroId"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.NumeroId">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('NumeroId')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>IdMunicipio</mat-label>
+                <textarea matInput formControlName="IdMunicipio"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.IdMunicipio">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('IdMunicipio')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>RadicaciónOrdenPagoPySPredial</mat-label>
+                <textarea matInput formControlName="RadicaciónOrdenPagoPySPredial"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.RadicacionOrdenPagoPySPredial">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('RadicaciónOrdenPagoPySPredial')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>FechaEstimadaDePyS (dd-mm-yyyy)</mat-label>
+                <input matInput [matDatepicker]="pickerFechaEstimadaDePyS" formControlName="FechaEstimadaDePyS">
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaEstimadaDePyS"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaEstimadaDePyS></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.FechaEstimadaDePyS">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('FechaEstimadaDePyS',1)">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>TipoPyS</mat-label>
+                <textarea matInput formControlName="TipoPyS"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.TipoPyS">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('TipoPyS')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>MunicipioPyS</mat-label>
+                <textarea matInput formControlName="MunicipioPyS"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.MunicipioPyS">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('MunicipioPyS')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoPyS</mat-label>
+                <mat-select formControlName="EstadoPyS">
+                    <div class="search-filter-panel">
+
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextestadoPyS" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('EstadoPyS')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option" *ngFor="let option of estadoPySList | filter : searchTextestadoPyS">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoPyS">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoPyS')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>EstadoOrdenes</mat-label>
+                <textarea matInput formControlName="EstadoOrdenes"></textarea>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.EstadoOrdenes">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('EstadoOrdenes')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>TipoProyectoM</mat-label>
+                <mat-select formControlName="TipoProyectoM">
+                    <div class="search-filter-panel">
+                        <input class="SearchBox" matInput [(ngModel)]="searchTextTipoProyectoM" placeholder="Buscar"
+                            [ngModelOptions]="{standalone: true}">
+                        <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                            (click)="clear('TipoProyectoM')">
+                            close</mat-icon>
+                    </div>
+                    <mat-option [value]="option"
+                        *ngFor="let option of tipoProyectoMList | filter : searchTextTipoProyectoM">{{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.TipoProyectoM">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('TipoProyectoM')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>ValorFacturaPazySalvoPredial</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"
+                    formControlName="ValorFacturaPazySalvoPredial">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.ValorFacturaPazySalvoPredial">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('ValorFacturaPazySalvoPredial')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>ValorEstampilla</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"
+                    formControlName="ValorEstampilla">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.ValorEstampilla">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('ValorEstampilla')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div class="form-panel-input" *ngIf="reportType == 9">
+            <mat-form-field class="inputForm" appearance="fill">
+                <mat-label>ValorEstampillaDepartamental</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0"
+                    formControlName="ValorEstampillaDepartamental">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+            <div *ngIf="!disableValidation.ValorEstampillaDepartamental">
+                <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                    matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                    (click)="confirm('ValorEstampillaDepartamental')">
+                    <mat-icon>warning</mat-icon>
+                </button>
+                <span>Masivo</span>
+            </div>
+        </div>
+
+        <div>
+            <button type="button" mat-raised-button type="submit">Salir</button>
+            <button type="button" mat-raised-button color="primary" (click)="saveData()">Guardar</button>
+        </div>
+
+    </form>
+
+    <p-confirmDialog header="Confirmacion" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    <p-dialog id="spinner-panel" [(visible)]="displayLoading" [closeIcon]="false" [showHeader]="false"
+        [dismissableMask]="false" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+        [style]="{width: '50vw'}">
+        <app-spinner></app-spinner>
+    </p-dialog>
+</div>

@@ -1,0 +1,27 @@
+<app-layout>
+    <section class="content-panel">
+        <mat-form-field appearance="standard" class="input-filter">
+            <mat-label>Filtro</mat-label>
+            <input matInput [(ngModel)]="searchText" placeholder="Escribe una palabra"
+                (ngModelChange)="onFilter($event)" #input>
+        </mat-form-field>
+        <mat-card>
+            <h1>Proyectos</h1>
+            <h5>Total: {{total}} Activos: {{totalActive}}</h5>
+            <div>
+                <mat-selection-list #shoes [(ngModel)]="selectedOptions">
+                    <mat-list-option *ngFor="let project of projectList" checkboxPosition="before" [value]="project"
+                        (click)="onNgModelChange(project)">
+                        {{project.PRY_Nombre}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </mat-card>
+        <!-- <div class="save-content">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div> -->
+    </section>
+
+</app-layout>

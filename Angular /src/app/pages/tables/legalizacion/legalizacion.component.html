@@ -1,0 +1,115 @@
+<app-layout>
+    <section class="content-panel" (click)="actionPanel()">
+        <mat-card>
+            <div class="title-content">
+                <h1>{{tableName}}</h1>
+                <span class="example-spacer"></span>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Busqueda por NIT, Nombre, Agrupación</mat-label>
+                    <input matInput [formControl]="quickSearch">
+                </mat-form-field>
+            </div>
+
+            <div class="content-btns">
+                <button class="btn-clean" mat-raised-button (click)="cleanFilter()">Limpiar</button>
+            </div>
+
+            <div class="content-table example-container">
+                <table mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container [matColumnDef]="headers" *ngFor="let headers of displayedColumns">
+                        <th mat-header-cell *matHeaderCellDef
+                            [hidden]="headers == 'a.UNI_ID' || headers == 'UNI_ID' || headers == 'VTA_ID' || headers == 'PRY_ID' || headers == 'ID'">
+                            <div class="th-header">
+                                <span>{{headers | header : searchText}}</span>
+                                <mat-icon
+                                    *ngIf="(sortFilter.name == null && sortFilter.direction == null) || sortFilter.name != headers"
+                                    (click)="announceSortChange(headers,'ASC')">import_export</mat-icon>
+                                <mat-icon *ngIf="sortFilter.name == headers && sortFilter.direction == 'DESC'"
+                                    (click)="announceSortChange(headers)">south</mat-icon>
+                                <mat-icon *ngIf="sortFilter.name == headers && sortFilter.direction == 'ASC'"
+                                    (click)="announceSortChange(headers,'DESC')">north</mat-icon>
+                                <mat-icon *ngIf="getHeaderType(headers) == 1" (click)="getHeaderOptionsTable(headers)"
+                                    [ngClass]="{filterActive: searchCondition[headers] != null }">filter_alt
+                                </mat-icon>
+                                <mat-icon
+                                    *ngIf="getHeaderType(headers) == 2 || getHeaderType(headers) == 3 || getHeaderType(headers) == 4"
+                                    (click)="openDateFilter(headers)"
+                                    [ngClass]="{filterActive: searchConditionDateFilter[headers] != null }">filter_alt
+                                </mat-icon>
+                                <!-- <span>{{headers}}</span> -->
+                            </div>
+
+                            <app-filter *ngIf="getHeaderType(headers) == 1" class="header-filter"
+                                [id]="safeColumn(headers)" [headers]="headers" [filtersOptions]="filtersOptions"
+                                [camposFecha]="camposFecha" [displayLoading]="displayLoadingFilter"
+                                (newItemEvent)="applyFilter($event)" (removeItemEvent)="clearColumn($event)"
+                                (searchFilterItemEvent)="getHeaderOptionFilterList($event)"
+                                (clearSearchFilterItemEvent)="getHeaderOptionsTable($event)"
+                                [eventsClear]="eventsSubjectDateFilter.asObservable()"
+                                [eventsSearchFilter]="eventsSubjectSearchedSimpleFilter.asObservable()">
+                            </app-filter>
+
+                            <app-filter-date *ngIf="getHeaderType(headers) == 3" class="header-filter date-filter-modal"
+                                [id]="safeColumn(headers)+'-date'" [headers]="headers" [filtersOptions]="filtersOptions"
+                                [camposFecha]="camposFecha" (newItemEvent)="applyFilterDate($event)"
+                                (removeItemEvent)="deleteFilterDate($event)"
+                                [eventsClear]="eventsSubjectDateFilter.asObservable()">
+                            </app-filter-date>
+
+                            <app-filter-currency *ngIf="getHeaderType(headers) == 2 || getHeaderType(headers) == 4"
+                                class="header-filter date-filter-modal" [id]="safeColumn(headers)+'-date'"
+                                [headers]="headers" [filtersOptions]="filtersOptions" [camposFecha]="camposFecha"
+                                (newItemEvent)="applyFilterDate($event)" (removeItemEvent)="deleteFilterDate($event)"
+                                [eventsClear]="eventsSubjectDateFilter.asObservable()">
+                            </app-filter-currency>
+
+
+                        </th>
+                        <td mat-cell *matCellDef="let element"
+                            [hidden]="headers == 'a.UNI_ID' || headers == 'UNI_ID' || headers == 'VTA_ID' || headers == 'PRY_ID' || headers == 'ID'"
+                            [ngClass]="{negativeColorRules: ((headers == 'GesCred' || headers == 'GesSub' || headers == 'GesCart') && getStatusRules(headers,element[headers]) == 0), 
+                            ok1ColorRules: ((headers == 'GesCred' || headers == 'GesSub' || headers == 'GesCart') && getStatusRules(headers,element[headers]) == 1), 
+                            ok2ColorRules: ((headers == 'GesCred' || headers == 'GesSub' || headers == 'GesCart') && getStatusRules(headers,element[headers]) == 2), 
+                            expirationColorRules: ((headers == 'GesCred' || headers == 'GesSub' || headers == 'GesCart') && getStatusRules(headers,element[headers]) == 3)}">
+                            <span class="td-content"
+                                *ngIf="getHeaderType(headers) != 2 && getHeaderType(headers) != 3 && getHeaderType(headers) != 4">{{element[getAliasFromColumnCalculate(headers)]}}</span>
+                            <span class="td-content"
+                                *ngIf="getHeaderType(headers) == 2">{{element[getAliasFromColumnCalculate(headers)] |
+                                currency}}</span>
+                            <span class="td-content"
+                                *ngIf="getHeaderType(headers) == 3">{{element[getAliasFromColumnCalculate(headers)] |
+                                date:'dd-MM-yyyy'}}</span>
+                            <span class="td-content" *ngIf="getHeaderType(headers) == 4">
+                                {{element[getAliasFromColumnCalculate(headers)] | number : '1.2-2' }} %</span>
+                        </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr [ngClass]="{rowSelect: rowSelected == i}" mat-row
+                        *matRowDef="let row; columns: displayedColumns;let i = index;let element" (click)="selectRow(i)"
+                        (dblclick)="editElement(element)"></tr>
+                </table>
+            </div>
+            <mat-paginator [length]="(lengthTable)" [pageSizeOptions]="[10, 20, 30]" (page)="changePage($event)"
+                showFirstLastButtons aria-label="Select page of periodic elements">
+            </mat-paginator>
+
+
+        </mat-card>
+
+        <p-dialog id="spinner-panel" [(visible)]="displayLoading" [closeIcon]="false" [showHeader]="false"
+            [dismissableMask]="false" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+            [style]="{width: '50vw'}">
+            <app-spinner></app-spinner>
+        </p-dialog>
+
+        <div class="download-content" (click)="exportToExcel()">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon>download</mat-icon>
+            </button>
+        </div>
+    </section>
+</app-layout>
