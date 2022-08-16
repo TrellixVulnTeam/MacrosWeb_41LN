@@ -18,6 +18,8 @@ export class AuditComponent implements OnInit {
 
   campaignOne: FormGroup;
 
+
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
