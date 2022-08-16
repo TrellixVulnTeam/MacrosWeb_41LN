@@ -353,7 +353,7 @@ public class LegalizacionRepository {
 							+ "'',\n" + "        ''" + map.get("QuienFirmaEsfp") + "'',\n" + "        ''"
 							+ map.get("EstadoEsfpFrpl") + "'',\n" + "        ''" + map.get("EstadoCoordinador")
 							+ "'',\n" + "        ''" + map.get("ObservacionCoordinador") + "'',\n" + "        ''"
-							+ map.get("EstadoAnalista") + "'',\n" + "        ''" + map.get("ObservacionAnalista")
+							+ map.get("EstadoAuxiliar") + "'',\n" + "        ''" + map.get("ObservacionAuxiliar")
 							+ "'',\n" + "        ''" + map.get("EstadoAbogado") + "'',\n" + "        ''"
 							+ map.get("ObservacionAbogado") + "'',\n" + "        ''" + map.get("CualFueElCambio")
 							+ "'',\n" + "        ''" + map.get("NoPredialNacional") + "'',\n" + "        ''"

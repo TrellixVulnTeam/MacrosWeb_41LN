@@ -70,6 +70,11 @@ export class TableService {
   multipleUpdateLegalizacion(field: string, newValue: string, obras: string, sortFilter: string, dataFilter: string, reportType?: number): Observable<AppHttpResponse<any> | TrackHttpError> {
     var url = `https://macros-web.azurewebsites.net/api/legalizacion/multisave`;
 
+    if(reportType == 9){
+      field = String(field).replace('EstadoAnalista','EstadoAuxiliar');
+      field = String(field).replace('ObservacionAnalista','ObservacionAuxiliar');
+    }
+
     let request: any = {
       field: field,
       newValue: newValue,
