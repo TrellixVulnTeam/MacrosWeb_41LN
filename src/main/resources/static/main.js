@@ -4714,7 +4714,7 @@ class ModifyDatatableComponent {
             }
             if ((role == 'Administrador' || role == 'Analista') && this.reportType == 9) {
                 this.disableValidation.EstadoAuxiliar = false;
-                this.disableValidation.ObservacionAnalista = false;
+                this.disableValidation.ObservacionAuxiliar = false;
                 this.disableValidation.EstadoAbogado = false;
                 this.disableValidation.ObservacionAbogado = false;
                 // this.disableValidation.Frpl = false;
@@ -4812,8 +4812,8 @@ class ModifyDatatableComponent {
             UNI_ID: [this.currentElement.UNI_ID],
             EstadoCoordinador: [{ value: this.currentElement.EstadoCoordinador, disabled: this.disableValidation.EstadoCoordinador }],
             ObservacionCoordinador: [{ value: this.currentElement.ObservacionCoordinador, disabled: this.disableValidation.ObservacionCoordinador }, [_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].maxLength(8000)]],
-            EstadoAnalista: [{ value: this.ORDENES != this.reportType ? this.currentElement.EstadoAnalista : this.currentElement.EstadoAuxiliar, disabled: this.disableValidation.EstadoAnalista }],
-            ObservacionAnalista: [{ value: this.ORDENES != this.reportType ? this.currentElement.ObservacionAnalista : this.currentElement.ObservacionAuxiliar, disabled: this.disableValidation.ObservacionAnalista }, [_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].maxLength(8000)]],
+            EstadoAnalista: [{ value: this.ORDENES != this.reportType ? this.currentElement.EstadoAnalista : this.currentElement.EstadoAnalista, disabled: this.disableValidation.EstadoAnalista }],
+            ObservacionAnalista: [{ value: this.ORDENES != this.reportType ? this.currentElement.ObservacionAnalista : this.currentElement.ObservacionAnalista, disabled: this.disableValidation.ObservacionAnalista }, [_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].maxLength(8000)]],
             AsignacionAnalista: [{ value: this.currentElement.AsignacionAnalista, disabled: this.disableValidation.AsignacionAnalista }],
             AnalistaVarado: [{ value: this.currentElement.AnalistaVarado, disabled: this.disableValidation.AnalistaVarado }],
             FechaSeguimientoCoordinador: [{ value: this.currentElement.FechaSeguimientoCoordinador != null ? new Date(this.currentElement.FechaSeguimientoCoordinador) : null, disabled: this.disableValidation.FechaSeguimientoCoordinador }],
