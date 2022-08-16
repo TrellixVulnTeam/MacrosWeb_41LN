@@ -346,7 +346,7 @@ public class LegalizacionRepository {
 					audit.setHerramienta("Subsidio");
 				} else if (reportType == this.ORDENES) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
-							+ "      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[EstadoAbogado],\n"
+							+ "      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],\n"
 							+ "        [ObservacionAbogado],[CualFueElCambio],[NoPredialNacional],[NumeroId],[IdMunicipio],[RadicaciónOrdenPagoPySPredial],[FechaEstimadaDePyS],\n"
 							+ "        [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes],[TipoProyectoM],[ValorFacturaPazySalvoPredial],[ValorEstampilla],[ValorEstampillaDepartamental],[PresentoCambio] ) \n"
 							+ "        VALUES (''" + map.get("UNI_ID") + "'',\n" + "        ''" + map.get("Frpl")
@@ -666,7 +666,7 @@ public class LegalizacionRepository {
 							+ this.standardizeMapValue("ObservacionAnalista", map) + "'')";
 				} else if (reportType == this.ORDENES) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
-							+ "      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[EstadoAbogado],\n"
+							+ "      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],\n"
 							+ "        [ObservacionAbogado],[CualFueElCambio],[NoPredialNacional],[NumeroId],[IdMunicipio],[RadicaciónOrdenPagoPySPredial],[FechaEstimadaDePyS],\n"
 							+ "        [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes],[TipoProyectoM] ) \n" + "        VALUES (''"
 							+ this.standardizeMapValue("UNI_ID", map) + "'',\n" + "        ''"
@@ -675,8 +675,8 @@ public class LegalizacionRepository {
 							+ this.standardizeMapValue("EstadoEsfpFrpl", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("EstadoCoordinador", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("ObservacionCoordinador", map) + "'',\n" + "        ''"
-							+ this.standardizeMapValue("EstadoAnalista", map) + "'',\n" + "        ''"
-							+ this.standardizeMapValue("ObservacionAnalista", map) + "'',\n" + "        ''"
+							+ this.standardizeMapValue("EstadoAuxiliar", map) + "'',\n" + "        ''"
+							+ this.standardizeMapValue("ObservacionAuxiliar", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("EstadoAbogado", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("ObservacionAbogado", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("CualFueElCambio", map) + "'',\n" + "        ''"

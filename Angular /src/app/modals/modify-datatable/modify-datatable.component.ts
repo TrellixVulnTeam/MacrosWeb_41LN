@@ -37,6 +37,8 @@ export class ModifyDatatableComponent implements OnInit {
   public asignacionList: any = [];
   public brokerList: any = [];
 
+  public estadoAuxiliarList:any = [];
+
   LEGALIZACION: number = 1;
   PROMESA: number = 2;
   SUBSIDIO: number = 3;
@@ -59,6 +61,7 @@ export class ModifyDatatableComponent implements OnInit {
 
   searchTextEstadoCoordinador: any;
   searchTextEstadoAnalista: any;
+  searchTextEstadoAuxiliar: any;
   searchTextAsignacionAnalista: any;
   searchTextHoradeEntrega: any;
   searchTextTipificacionCorreccionesCtl: any;
@@ -147,6 +150,9 @@ export class ModifyDatatableComponent implements OnInit {
     Carta2: true,
     Carta3: true,
     EstadoEscriturado: true,
+
+    EstadoAuxiliar: true,
+    ObservacionAuxiliar: true,
   }
 
   constructor(
@@ -343,6 +349,21 @@ export class ModifyDatatableComponent implements OnInit {
         )
     }
 
+    if (this.reportType == 9) {
+      AppComponent.displayLoading = true;
+      this.legalizacionService.getOptionListModal(toolName, 'EstadoAuxiliar')
+        .subscribe(
+          (response: any) => {
+            console.log(response);
+            this.estadoAuxiliarList = response;
+            AppComponent.displayLoading = false;
+            this.estadoAuxiliarList.unshift('Vacio');
+          }
+        )
+    }
+
+
+
     if (this.reportType == 10) {
       AppComponent.displayLoading = true;
       this.legalizacionService.getOptionListModal(toolName, 'CampanasEspeciales')
@@ -477,6 +498,9 @@ export class ModifyDatatableComponent implements OnInit {
         Carta2: false,
         Carta3: false,
         EstadoEscriturado: false,
+
+        EstadoAuxiliar: false,
+        ObservacionAuxiliar: false,
       }
     } else {
       if ((role == 'Administrador' || role == 'Analista') && this.reportType == 1) {
@@ -501,6 +525,8 @@ export class ModifyDatatableComponent implements OnInit {
         this.disableValidation.EstadoCoordinador = false;
         this.disableValidation.ObservacionCoordinador = false;
       }
+
+
 
       if ((role == 'Administrador' || role == 'Analista' || role == 'Coordinador') && this.reportType == 3) {
         this.disableValidation.EstadoAnalista = false;
@@ -572,7 +598,7 @@ export class ModifyDatatableComponent implements OnInit {
 
 
       if ((role == 'Administrador' || role == 'Analista') && this.reportType == 9) {
-        this.disableValidation.EstadoAnalista = false;
+        this.disableValidation.EstadoAuxiliar = false;
         this.disableValidation.ObservacionAnalista = false;
 
         this.disableValidation.EstadoAbogado = false;
@@ -752,6 +778,8 @@ export class ModifyDatatableComponent implements OnInit {
         Carta2: [{ value: this.currentElement.Carta2 != null ? new Date(this.currentElement.Carta2) : null, disabled: this.disableValidation.Carta2 }],
         Carta3: [{ value: this.currentElement.Carta3 != null ? new Date(this.currentElement.Carta3) : null, disabled: this.disableValidation.Carta3 }],
 
+        EstadoAuxiliar: [{ value: this.ORDENES != this.reportType ? this.currentElement.EstadoAuxiliar : this.currentElement.EstadoAuxiliar, disabled: this.disableValidation.EstadoAuxiliar }],
+        ObservacionAuxiliar: [{ value: this.ORDENES != this.reportType ? this.currentElement.ObservacionAuxiliar : this.currentElement.ObservacionAuxiliar, disabled: this.disableValidation.ObservacionAuxiliar }, [Validators.maxLength(8000)]],
 
       }
     );
@@ -970,7 +998,7 @@ export class ModifyDatatableComponent implements OnInit {
       }
 
       insertDate = `INSERT INTO #tblTEMP  
-      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[EstadoAbogado],
+      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],
         [ObservacionAbogado],[CualFueElCambio],[NoPredialNacional],[NumeroId],[IdMunicipio],[RadicaciónOrdenPagoPySPredial],[FechaEstimadaDePyS],
         [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes],[TipoProyectoM],[ValorFacturaPazySalvoPredial],[ValorEstampilla],[ValorEstampillaDepartamental],[PresentoCambio] ) 
         VALUES (''${this.form.controls['UNI_ID'].value}'',
@@ -979,8 +1007,8 @@ export class ModifyDatatableComponent implements OnInit {
         ''${this.form.controls['EstadoEsfpFrpl'].value}'',
         ''${this.form.controls['EstadoCoordinador'].value}'',
         ''${this.form.controls['ObservacionCoordinador'].value}'',
-        ''${this.form.controls['EstadoAnalista'].value}'',
-        ''${this.form.controls['ObservacionAnalista'].value}'',
+        ''${this.form.controls['EstadoAuxiliar'].value}'',
+        ''${this.form.controls['ObservacionAuxiliar'].value}'',
         ''${this.form.controls['EstadoAbogado'].value}'',
         ''${this.form.controls['ObservacionAbogado'].value}'',
         ''${this.form.controls['CualFueElCambio'].value}'',
@@ -1135,7 +1163,8 @@ export class ModifyDatatableComponent implements OnInit {
               acceptLabel: 'OK',
               accept: () => {
                 this.dialogRef.close();
-                this.confirmationService.close();              }
+                this.confirmationService.close();
+              }
             })
           }
         }, err => {
@@ -1148,7 +1177,8 @@ export class ModifyDatatableComponent implements OnInit {
             acceptLabel: 'OK',
             accept: () => {
               this.dialogRef.close();
-              this.confirmationService.close();            }
+              this.confirmationService.close();
+            }
           })
         }
       )

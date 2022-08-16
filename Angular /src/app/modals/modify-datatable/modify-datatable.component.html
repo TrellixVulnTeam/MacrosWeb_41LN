@@ -252,10 +252,9 @@
         </div>
 
         <div class="form-panel-input"
-            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 9 || reportType == 10 || reportType == 11">
+            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 10 || reportType == 11">
             <mat-form-field class="inputForm" appearance="fill">
-                <mat-label *ngIf="ORDENES != reportType">EstadoAnalista</mat-label>
-                <mat-label *ngIf="ORDENES == reportType">EstadoAuxiliar</mat-label>
+                <mat-label >EstadoAnalista</mat-label>
 
                 <mat-select formControlName="EstadoAnalista">
                     <div class="search-filter-panel">
@@ -281,10 +280,9 @@
         </div>
 
         <div class="form-panel-input"
-            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 9 || reportType == 10 || reportType == 11">
+            *ngIf="reportType == 1 || reportType == 2 || reportType == 3 || reportType == 4 || reportType == 5 || reportType == 6 || reportType == 7 || reportType == 8 || reportType == 10 || reportType == 11">
             <mat-form-field class="inputForm" appearance="fill" hintLabel="Max 8000 caracteres">
-                <mat-label *ngIf="ORDENES != reportType">ObservacionAnalista</mat-label>
-                <mat-label *ngIf="ORDENES == reportType">ObservacionAuxiliar</mat-label>
+                <mat-label >ObservacionAnalista</mat-label>
                 <textarea matInput formControlName="ObservacionAnalista" maxlength="8000"
                     #ObservacionAnalista></textarea>
                 <mat-hint align="end">{{ObservacionAnalista.value?.length || 0}}/8000</mat-hint>
@@ -298,6 +296,54 @@
                 <span>Masivo</span>
             </div>
         </div>
+
+        <div class="form-panel-input"
+        *ngIf="reportType == 9">
+        <mat-form-field class="inputForm" appearance="fill">
+            <mat-label >EstadoAuxiliar</mat-label>
+
+            <mat-select formControlName="EstadoAuxiliar">
+                <div class="search-filter-panel">
+                    <input class="SearchBox" matInput [(ngModel)]="searchTextEstadoAuxiliar" placeholder="Buscar"
+                        [ngModelOptions]="{standalone: true}">
+                    <mat-icon class="close-icon" aria-hidden="false" aria-label="Example home icon"
+                        (click)="clear('EstadoAuxiliar')">
+                        close</mat-icon>
+                </div>
+                <mat-option [value]="option"
+                    *ngFor="let option of estadoAuxiliarList | filter : searchTextEstadoAuxiliar">{{option}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="!disableValidation.EstadoAuxiliar">
+            <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                (click)="confirm('EstadoAuxiliar')">
+                <mat-icon>warning</mat-icon>
+            </button>
+            <span>Masivo</span>
+        </div>
+    </div>
+
+    <div class="form-panel-input"
+        *ngIf="reportType == 9">
+        <mat-form-field class="inputForm" appearance="fill" hintLabel="Max 8000 caracteres">
+            <mat-label >ObservacionAuxiliar</mat-label>
+            <textarea matInput formControlName="ObservacionAuxiliar" maxlength="8000"
+                #ObservacionAuxiliar></textarea>
+            <mat-hint align="end">{{ObservacionAuxiliar.value?.length || 0}}/8000</mat-hint>
+        </mat-form-field>
+        <div *ngIf="!disableValidation.ObservacionAuxiliar">
+            <button type="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                matTooltip="Aplicar cambio de forma masiva" [matTooltipPosition]="'before'"
+                (click)="confirm('ObservacionAuxiliar')">
+                <mat-icon>warning</mat-icon>
+            </button>
+            <span>Masivo</span>
+        </div>
+    </div>
+
+
 
 
         <div class="form-panel-input" *ngIf="reportType == 1">

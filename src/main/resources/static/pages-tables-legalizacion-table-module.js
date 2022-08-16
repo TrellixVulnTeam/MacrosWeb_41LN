@@ -1225,10 +1225,6 @@ class TableService {
     }
     multipleUpdateLegalizacion(field, newValue, obras, sortFilter, dataFilter, reportType) {
         var url = `https://macros-web.azurewebsites.net/api/legalizacion/multisave`;
-        if (reportType == 9) {
-            field = String(field).replace('EstadoAnalista', 'EstadoAuxiliar');
-            field = String(field).replace('ObservacionAnalista', 'ObservacionAuxiliar');
-        }
         let request = {
             field: field,
             newValue: newValue,
