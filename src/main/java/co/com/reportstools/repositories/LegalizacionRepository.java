@@ -717,7 +717,7 @@ public class LegalizacionRepository {
 							+ this.standardizeMapValue("ObservacionAnalista", map) + "'')";
 				} else if (reportType == this.RECAUDO) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
-							+ "      ( [UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[FechaAcuerdoProximoPago],[MontoPactado],[LlamadaNo1],[LlamadaNo2],[LlamadaNo3],[LlamadaNo4],[LlamadaNo5],[EstadoEscriturado] ) \n"
+							+ "      ( [UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[FechaAcuerdoProximoPago],[MontoPactado],[LlamadaNo1],[LlamadaNo2],[Carta1],[Carta2],[Carta3],[EstadoEscriturado] ) \n"
 							+ "        VALUES (''" + this.standardizeMapValue("UNI_ID", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("EstadoCoordinador", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("ObservacionCoordinador", map) + "'',\n" + "        ''"
@@ -727,9 +727,9 @@ public class LegalizacionRepository {
 							+ this.standardizeMapValue("MontoPactado", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("LlamadaNo1", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("LlamadaNo2", map) + "'',\n" + "        ''"
-							+ this.standardizeMapValue("LlamadaNo3", map) + "'',\n" + "        ''"
-							+ this.standardizeMapValue("LlamadaNo4", map) + "'',\n" + "        ''"
-							+ this.standardizeMapValue("LlamadaNo5", map) + "'',\n" + "        ''"
+							+ this.standardizeMapValue("Carta1", map) + "'',\n" + "        ''"
+							+ this.standardizeMapValue("Carta2", map) + "'',\n" + "        ''"
+							+ this.standardizeMapValue("Carta3", map) + "'',\n" + "        ''"
 							+ this.standardizeMapValue("EstadoEscriturado", map) + "'')";
 				} else if (reportType == this.JUNTAS) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
