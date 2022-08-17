@@ -391,15 +391,15 @@ public class LegalizacionRepository {
 					audit.setHerramienta("Escrituracion");
 				} else if (reportType == this.RECAUDO) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
-							+ "      ( [UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[FechaAcuerdoProximoPago],[MontoPactado],[LlamadaNo1],[LlamadaNo2],[LlamadaNo3],[LlamadaNo4],[LlamadaNo5],[EstadoEscriturado] ) \n"
+							+ "      ( [UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[FechaAcuerdoProximoPago],[MontoPactado],[LlamadaNo1],[LlamadaNo2],[Carta1],[Carta2],[Carta3],[EstadoEscriturado] ) \n"
 							+ "        VALUES (''" + map.get("UNI_ID") + "'',\n" + "        ''"
 							+ map.get("EstadoCoordinador") + "'',\n" + "        ''" + map.get("ObservacionCoordinador")
 							+ "'',\n" + "        ''" + map.get("EstadoAnalista") + "'',\n" + "        ''"
 							+ map.get("ObservacionAnalista") + "'',\n" + "        ''"
 							+ map.get("FechaAcuerdoProximoPago") + "'',\n" + "        ''" + map.get("MontoPactado")
 							+ "'',\n" + "        ''" + map.get("LlamadaNo1") + "'',\n" + "        ''"
-							+ map.get("LlamadaNo2") + "'',\n" + "        ''" + map.get("LlamadaNo3") + "'',\n"
-							+ "        ''" + map.get("LlamadaNo4") + "'',\n" + "        ''" + map.get("LlamadaNo5")
+							+ map.get("LlamadaNo2") + "'',\n" + "        ''" + map.get("Carta1") + "'',\n"
+							+ "        ''" + map.get("Carta2") + "'',\n" + "        ''" + map.get("Carta3")
 							+ "'',\n" + "        ''" + map.get("EstadoEscriturado") + "'')";
 					audit.setHerramienta("Recaudo");
 				}
