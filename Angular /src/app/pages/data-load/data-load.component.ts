@@ -197,13 +197,13 @@ export class DataLoadComponent implements OnInit {
     } else if (this.currentTool == this.TRAZABILIDAD) {
       order = ["UNI_ID", "EstadoCoordinador", "ObservacionCoordinador", "EstadoAnalista", "ObservacionAnalista", "TipificacionCorreccionesCtl", "NBR", "AnalistaTrazabilidad", "DetalleObservacion"];
     } else if (this.currentTool == this.ORDENES) {
-      order = ["UNI_ID", "Frpl", "QuienFirmaEsfp", "EstadoEsfpFrpl", "EstadoCoordinador", "ObservacionCoordinador", "EstadoAnalista", "ObservacionAnalista", "EstadoAbogado", "ObservacionAbogado", "PresentoCambio", "CualFueElCambio", "NoPredialNacional", "NumeroId", "IdMunicipio", "RadicaciónOrdenPagoPySPredial", "FechaEstimadaDePyS", "TipoPyS", "MunicipioPyS", "EstadoPyS", "EstadoOrdenes","TipoProyectoM"];
+      order = ["UNI_ID", "Frpl", "QuienFirmaEsfp", "EstadoEsfpFrpl", "EstadoCoordinador", "ObservacionCoordinador", "EstadoAuxiliar", "ObservacionAuxiliar", "EstadoAbogado", "ObservacionAbogado", "PresentoCambio", "CualFueElCambio", "NoPredialNacional", "NumeroId", "IdMunicipio", "RadicaciónOrdenPagoPySPredial", "FechaEstimadaDePyS", "TipoPyS", "MunicipioPyS", "EstadoPyS", "EstadoOrdenes","TipoProyectoM"];
     } else if (this.currentTool == this.RENOVACION) {
       order = ["UNI_ID", "FechaSeguimientoCoordinador", "EstadoCoordinador", "ObservacionCoordinador", "CampanasEspeciales", "CausalRenovacion", "FechaSeguimientoAnalista", "EstadoAnalista", "ObservacionAnalista", "EstadoPoderAnalista", "Asignacion", "Broker", "FechaAsignacion"];
     } else if (this.currentTool == this.ESCRITURACION) {
       order = ["UNI_ID", "EstadoCoordinador", "ObservacionCoordinador", "EstadoAnalista", "ObservacionAnalista"];
     } else if (this.currentTool == this.RECAUDO) {
-      order = ["UNI_ID", "EstadoCoordinador", "ObservacionCoordinador", "EstadoAnalista", "ObservacionAnalista", "FechaAcuerdoProximoPago", "MontoPactado", "LlamadaNo1", "LlamadaNo2", "LlamadaNo3", "LlamadaNo4", "LlamadaNo5", "EstadoEscriturado"];
+      order = ["UNI_ID", "EstadoCoordinador", "ObservacionCoordinador", "EstadoAnalista", "ObservacionAnalista", "FechaAcuerdoProximoPago", "MontoPactado", "LlamadaNo1", "LlamadaNo2", "Carta1", "Carta2", "Carta3", "EstadoEscriturado"];
     } else if (this.currentTool == this.JUNTAS) {
       order = ["UNI_ID", "ProyEntrega", "ProyEscritura", "TorreManzana", "Unidad"];
     } else if (this.currentTool == this.VIGENCIAS) {
