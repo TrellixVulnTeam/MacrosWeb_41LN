@@ -204,4 +204,12 @@ public class LegalizacionController {
 		String usuario = !jsonTemp.isNull("usuario") ? jsonTemp.getString("usuario") : null;
 		return auditService.getAudit(startTime, endTime, herramienta, usuario);
 	}
+
+	@RequestMapping(value = "/table/header", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String getStoreProcedureInfoHeaders(@RequestBody String peticion) {
+		JSONObject jsonTemp = new JSONObject(peticion);
+		Integer reportType = !jsonTemp.isNull("reportType") ? jsonTemp.getInt("reportType") : null;
+
+		return legalizacionService.getStoreProcedureInfoHeaders(reportType);
+	}
 }

@@ -46,4 +46,8 @@ public class LegalizacionService {
 		return legalizacionRepository.loadData(data, reportType);
 	}
 
+	public String getStoreProcedureInfoHeaders(int reportType) {
+		return legalizacionRepository.getStoreProcedureInfoHeaders(reportType);
+	}
+
 }

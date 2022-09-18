@@ -824,4 +824,34 @@ public class LegalizacionRepository {
 		}
 		return map.get(key).toString();
 	}
+
+	public String getStoreProcedureInfoHeaders(int reportType) {
+
+		String obras = this.getProyectos();
+
+		String storeProcedureName = this.getStoreProcedureName(reportType);
+
+		Query queryHeaders = entityManager
+				.createNativeQuery("EXEC [dbo].[" + storeProcedureName + "] @obras = '" + obras + "' , @Opt = '2'");
+		NativeQueryImpl nativeQueryHeaders = (NativeQueryImpl) queryHeaders;
+
+		Object[] resultHeadersList = {};
+		try {
+			String resultHeaders = String.valueOf(nativeQueryHeaders.getSingleResult());
+			if (resultHeaders.contains("(")) {
+				resultHeaders = this.processHeaderWithCalculations(resultHeaders);
+			} else {
+				resultHeaders = resultHeaders.replaceAll("\r", "").replaceAll("\n", "").replaceAll("\t", "");
+			}
+			resultHeadersList = resultHeaders.split(",");
+
+		} catch (Exception e) {
+			resultHeadersList = nativeQueryHeaders.getResultList().toArray();
+		}
+
+		JSONObject resultadoJSON = new JSONObject();
+		resultadoJSON.put("data", resultHeadersList);
+		return resultadoJSON.toString();
+
+	}
 }
