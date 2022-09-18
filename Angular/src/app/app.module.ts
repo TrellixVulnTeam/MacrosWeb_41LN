@@ -9,8 +9,9 @@ import { DialogModule } from 'primeng/dialog';
 import { SharedModule } from './shared/shared.module';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/interceptor.service';
+import { TableService } from './services/table.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,11 @@ import { TokenInterceptor } from './services/interceptor.service';
     BrowserAnimationsModule,
     SharedModule,
     ModalsModule,
-    DialogModule
+    DialogModule,
+    HttpClientModule
   ],
   providers: [
+    TableService,
     AuthService,
     AuthGuardService,
     {

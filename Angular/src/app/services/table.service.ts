@@ -207,6 +207,14 @@ export class TableService {
       .pipe(catchError((error) => this.handleHttpError(error)));
   }
 
+  getHeaders(reportType: string): Observable<AppHttpResponse<any> | TrackHttpError> {
+    var url = `https://macros-web.azurewebsites.net/api/table/header`;
+
+    return this.http
+      .post<null>(url, { reportType: reportType })
+      .pipe(catchError((error) => this.handleHttpError(error)));
+  }
+
   private handleHttpError(
     error: HttpErrorResponse
   ): Observable<TrackHttpError> {
