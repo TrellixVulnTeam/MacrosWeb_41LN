@@ -16,7 +16,7 @@ export class TableService {
 
   getDataTable(obrasSelected: any, page: any, size: any, sortFilter?: any, dataFilter?: any, reportType?: number): Observable<AppHttpResponse<any> | TrackHttpError> {
 
-    var url = `https://macros-web.azurewebsites.net/api/legalizacion`;
+    var url = `https://herramientastyc.cbolivar.com/api/legalizacion`;
     let params = new HttpParams();
 
 
@@ -42,7 +42,7 @@ export class TableService {
 
   getHeaderOptionsTable(obrasSelected: any, dataGroup: any, dataFilter?: any, reportType?: number): Observable<AppHttpResponse<any> | TrackHttpError> {
 
-    var url = `https://macros-web.azurewebsites.net/api/legalizacion/filter`;
+    var url = `https://herramientastyc.cbolivar.com/api/legalizacion/filter`;
 
     return this.http
       .post<null>(url, { proyecto: obrasSelected, dataGroup: dataGroup, dataFilter: dataFilter, reportType: reportType })
@@ -51,7 +51,7 @@ export class TableService {
 
   getHeaderOptionFilterList(obrasSelected: any, dataGroup: any, dataFilter?: any, filterLike?: any, reportType?: number): Observable<AppHttpResponse<any> | TrackHttpError> {
 
-    var url = `https://macros-web.azurewebsites.net/api/legalizacion/filter/like`;
+    var url = `https://herramientastyc.cbolivar.com/api/legalizacion/filter/like`;
 
     return this.http
       .post<null>(url, { proyecto: obrasSelected, dataGroup: dataGroup, dataFilter: dataFilter, filterLike: filterLike, reportType: reportType })
@@ -60,7 +60,7 @@ export class TableService {
 
 
   updateData(data: any, reportType: number, auditList: []): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/legalizacion/save`;
+    var url = `https://herramientastyc.cbolivar.com/api/legalizacion/save`;
 
     return this.http
       .post<null>(url, { data: data, reportType: reportType, auditList: auditList })
@@ -68,7 +68,7 @@ export class TableService {
   }
 
   multipleUpdateLegalizacion(field: string, newValue: string, obras: string, sortFilter: string, dataFilter: string, reportType?: number): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/legalizacion/multisave`;
+    var url = `https://herramientastyc.cbolivar.com/api/legalizacion/multisave`;
 
     let request: any = {
       field: field,
@@ -86,7 +86,7 @@ export class TableService {
   }
 
   getOptionListModal(herramienta: string, campo: string): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/get-option-list-modal`;
+    var url = `https://herramientastyc.cbolivar.com/api/get-option-list-modal`;
 
     let request: any = {
       herramienta: herramienta,
@@ -101,7 +101,7 @@ export class TableService {
 
 
   getProjectSettings(): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/project-settings`;
+    var url = `https://herramientastyc.cbolivar.com/api/project-settings`;
     return this.http
       .get<any>(url)
       .pipe(map((data: any) => {
@@ -120,7 +120,7 @@ export class TableService {
     };
     console.log(request);
 
-    var url = `https://macros-web.azurewebsites.net/api/update-project`;
+    var url = `https://herramientastyc.cbolivar.com/api/update-project`;
     return this.http
       .post<null>(url, request).pipe(map((data: any) => {
         // data.data = JSON.parse(data.data);
@@ -137,7 +137,7 @@ export class TableService {
     };
     console.log(request);
 
-    var url = `https://macros-web.azurewebsites.net/api/login`;
+    var url = `https://herramientastyc.cbolivar.com/api/login`;
     return this.http
       .post<null>(url, request).pipe(map((data: any) => {
         return data;
@@ -146,7 +146,7 @@ export class TableService {
   }
 
   getUsers(): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/users`;
+    var url = `https://herramientastyc.cbolivar.com/api/users`;
     return this.http
       .post<any>(url, {})
       .pipe(map((data: any) => {
@@ -157,7 +157,7 @@ export class TableService {
   }
 
   getRoles(): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/roles`;
+    var url = `https://herramientastyc.cbolivar.com/api/roles`;
     return this.http
       .post<any>(url, {})
       .pipe(map((data: any) => {
@@ -176,7 +176,7 @@ export class TableService {
     };
     console.log(request);
 
-    var url = `https://macros-web.azurewebsites.net/api/update-role`;
+    var url = `https://herramientastyc.cbolivar.com/api/update-role`;
     return this.http
       .post<null>(url, request).pipe(map((data: any) => {
         // data.data = JSON.parse(data.data);
@@ -186,7 +186,7 @@ export class TableService {
   }
 
   loadData(data: any, reportType: string): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/load-data`;
+    var url = `https://herramientastyc.cbolivar.com/api/load-data`;
 
     let request: any = {
       reportType: reportType,
@@ -200,7 +200,7 @@ export class TableService {
   }
 
   getAudit(startTime: any, endTime: any): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/audit`;
+    var url = `https://herramientastyc.cbolivar.com/api/audit`;
 
     return this.http
       .post<null>(url, { startTime: startTime, endTime: endTime })
@@ -208,7 +208,7 @@ export class TableService {
   }
 
   getHeaders(reportType: string): Observable<AppHttpResponse<any> | TrackHttpError> {
-    var url = `https://macros-web.azurewebsites.net/api/table/header`;
+    var url = `https://herramientastyc.cbolivar.com/api/table/header`;
 
     return this.http
       .post<null>(url, { reportType: reportType })

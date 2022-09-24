@@ -258,7 +258,7 @@ export class ModifyDatatableComponent implements OnInit {
         )
     }
 
-    if (this.reportType == 9) {
+    if (this.reportType == 11) {
       AppComponent.displayLoading = true;
       this.legalizacionService.getOptionListModal(toolName, 'Frpl')
         .subscribe(
@@ -284,7 +284,7 @@ export class ModifyDatatableComponent implements OnInit {
         )
     }
 
-    if (this.reportType == 9) {
+    if (this.reportType == 11) {
       AppComponent.displayLoading = true;
       this.legalizacionService.getOptionListModal(toolName, 'EstadoEsfpFrpl')
         .subscribe(
@@ -625,9 +625,9 @@ export class ModifyDatatableComponent implements OnInit {
         this.disableValidation.ValorEstampilla = false;
         this.disableValidation.ValorEstampillaDepartamental = false;
       } else if ((role == 'Administrador' || role == 'Coordinador') && this.reportType == 9) {
-        this.disableValidation.Frpl = false;
+        // this.disableValidation.Frpl = false;
         this.disableValidation.QuienFirmaEsfp = false;
-        this.disableValidation.EstadoEsfpFrpl = false;
+        // this.disableValidation.EstadoEsfpFrpl = false;
         // this.disableValidation.EstadoAbogado = false;
         // this.disableValidation.ObservacionAbogado = false;
 
@@ -683,6 +683,8 @@ export class ModifyDatatableComponent implements OnInit {
         this.disableValidation.ObservacionAnalista = false;
         this.disableValidation.EstadoCoordinador = false;
         this.disableValidation.ObservacionCoordinador = false;
+        this.disableValidation.Frpl = false;
+        this.disableValidation.EstadoEsfpFrpl = false;
       }
     }
 
@@ -998,13 +1000,11 @@ export class ModifyDatatableComponent implements OnInit {
       }
 
       insertDate = `INSERT INTO #tblTEMP  
-      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],
+      ([UNI_ID],[QuienFirmaEsfp],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],
         [ObservacionAbogado],[CualFueElCambio],[NoPredialNacional],[NumeroId],[IdMunicipio],[RadicaciónOrdenPagoPySPredial],[FechaEstimadaDePyS],
         [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes],[TipoProyectoM],[ValorFacturaPazySalvoPredial],[ValorEstampilla],[ValorEstampillaDepartamental],[PresentoCambio] ) 
         VALUES (''${this.form.controls['UNI_ID'].value}'',
-        ''${this.form.controls['Frpl'].value}'',
         ''${this.form.controls['QuienFirmaEsfp'].value}'',
-        ''${this.form.controls['EstadoEsfpFrpl'].value}'',
         ''${this.form.controls['EstadoCoordinador'].value}'',
         ''${this.form.controls['ObservacionCoordinador'].value}'',
         ''${this.form.controls['EstadoAuxiliar'].value}'',
@@ -1064,12 +1064,14 @@ export class ModifyDatatableComponent implements OnInit {
         ''${fechaFormatStr3}'')`;
     } else if (this.reportType == 11) {
       insertDate = `INSERT INTO #tblTEMP  
-      ([UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista] ) 
+      ([UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],[ObservacionAnalista],[Frpl],[EstadoEsfpFrpl] ) 
         VALUES (''${this.form.controls['UNI_ID'].value}'',
         ''${this.form.controls['EstadoCoordinador'].value}'',
         ''${this.form.controls['ObservacionCoordinador'].value}'',
         ''${this.form.controls['EstadoAnalista'].value}'',
-        ''${this.form.controls['ObservacionAnalista'].value}'')`;
+        ''${this.form.controls['ObservacionAnalista'].value}'',
+        ''${this.form.controls['Frpl'].value}'',
+        ''${this.form.controls['EstadoEsfpFrpl'].value}'')`;
     }
 
     insertDate = String(insertDate).toString();

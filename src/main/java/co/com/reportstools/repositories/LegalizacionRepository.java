@@ -346,25 +346,24 @@ public class LegalizacionRepository {
 					audit.setHerramienta("Subsidio");
 				} else if (reportType == this.ORDENES) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
-							+ "      ([UNI_ID],[Frpl],[QuienFirmaEsfp],[EstadoEsfpFrpl],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],\n"
+							+ "      ([UNI_ID],[QuienFirmaEsfp],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAuxiliar],[ObservacionAuxiliar],[EstadoAbogado],\n"
 							+ "        [ObservacionAbogado],[CualFueElCambio],[NoPredialNacional],[NumeroId],[IdMunicipio],[RadicaciónOrdenPagoPySPredial],[FechaEstimadaDePyS],\n"
 							+ "        [TipoPyS],[MunicipioPyS],[EstadoPyS],[EstadoOrdenes],[TipoProyectoM],[ValorFacturaPazySalvoPredial],[ValorEstampilla],[ValorEstampillaDepartamental],[PresentoCambio] ) \n"
-							+ "        VALUES (''" + map.get("UNI_ID") + "'',\n" + "        ''" + map.get("Frpl")
-							+ "'',\n" + "        ''" + map.get("QuienFirmaEsfp") + "'',\n" + "        ''"
-							+ map.get("EstadoEsfpFrpl") + "'',\n" + "        ''" + map.get("EstadoCoordinador")
-							+ "'',\n" + "        ''" + map.get("ObservacionCoordinador") + "'',\n" + "        ''"
-							+ map.get("EstadoAuxiliar") + "'',\n" + "        ''" + map.get("ObservacionAuxiliar")
-							+ "'',\n" + "        ''" + map.get("EstadoAbogado") + "'',\n" + "        ''"
-							+ map.get("ObservacionAbogado") + "'',\n" + "        ''" + map.get("CualFueElCambio")
-							+ "'',\n" + "        ''" + map.get("NoPredialNacional") + "'',\n" + "        ''"
-							+ map.get("NumeroId") + "'',\n" + "        ''" + map.get("IdMunicipio") + "'',\n"
-							+ "        ''" + map.get("RadicaciónOrdenPagoPySPredial") + "'',\n" + "        ''"
-							+ map.get("FechaEstimadaDePyS") + "'',\n" + "        ''" + map.get("TipoPyS") + "'',\n"
-							+ "        ''" + map.get("MunicipioPyS") + "'',\n" + "        ''" + map.get("EstadoPyS")
-							+ "'',\n" + "        ''" + map.get("EstadoOrdenes") + "'',\n" + "        ''"
-							+ map.get("TipoProyectoM") + "'',\n" + "        ''"
-							+ map.get("ValorFacturaPazySalvoPredial") + "'',\n" + "        ''"
+							+ "        VALUES (''" + map.get("UNI_ID") + "'',\n" + "        ''" + map.get("QuienFirmaEsfp")
+							+ "'',\n" + "        ''" + map.get("EstadoCoordinador") + "'',\n" + "        ''"
+							+ map.get("ObservacionCoordinador") + "'',\n" + "        ''" + map.get("EstadoAuxiliar")
+							+ "'',\n" + "        ''" + map.get("ObservacionAuxiliar") + "'',\n" + "        ''"
+							+ map.get("EstadoAbogado") + "'',\n" + "        ''" + map.get("ObservacionAbogado")
+							+ "'',\n" + "        ''" + map.get("CualFueElCambio") + "'',\n" + "        ''"
+							+ map.get("NoPredialNacional") + "'',\n" + "        ''" + map.get("NumeroId")
+							+ "'',\n" + "        ''" + map.get("IdMunicipio") + "'',\n" + "        ''"
+							+ map.get("RadicaciónOrdenPagoPySPredial") + "'',\n" + "        ''" + map.get("FechaEstimadaDePyS") + "'',\n"
+							+ "        ''" + map.get("TipoPyS") + "'',\n" + "        ''"
+							+ map.get("MunicipioPyS") + "'',\n" + "        ''" + map.get("EstadoPyS") + "'',\n"
+							+ "        ''" + map.get("EstadoOrdenes") + "'',\n" + "        ''" + map.get("TipoProyectoM")
+							+ "'',\n" + "        ''" + map.get("ValorFacturaPazySalvoPredial") + "'',\n" + "        ''"
 							+ map.get("ValorEstampilla") + "'',\n" + "        ''"
+
 							+ map.get("ValorEstampillaDepartamental") + "'',\n" + "        ''"
 							+ map.get("PresentoCambio") + "'')";
 					audit.setHerramienta("Ordenes");
@@ -384,10 +383,10 @@ public class LegalizacionRepository {
 				} else if (reportType == this.ESCRITURACION) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
 							+ "    ([UNI_ID],[EstadoCoordinador],[ObservacionCoordinador],[EstadoAnalista],\n"
-							+ "      [ObservacionAnalista] ) \n" + "      VALUES (''" + map.get("UNI_ID") + "'',\n"
+							+ "      [ObservacionAnalista], [Frpl], [EstadoEsfpFrpl] ) \n" + "      VALUES (''" + map.get("UNI_ID") + "'',\n"
 							+ "      ''" + map.get("EstadoCoordinador") + "'',\n" + "      ''"
 							+ map.get("ObservacionCoordinador") + "'',\n" + "      ''" + map.get("EstadoAnalista")
-							+ "'',\n" + "      ''" + map.get("ObservacionAnalista") + "'')";
+							+ "'',\n" + "      ''" + map.get("ObservacionAnalista") + "'' ,\n" + "      ''" + map.get("Frpl") + "'' ,\n" + "      ''" + map.get("EstadoEsfpFrpl") + "'')";
 					audit.setHerramienta("Escrituracion");
 				} else if (reportType == this.RECAUDO) {
 					entryInsert = "INSERT INTO #tblTEMP  \n"
